@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.AddPage"
+             Title="AddPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ImageButton Source="{Binding ImagePath}" Grid.Column="0"
+                     HorizontalOptions="Center" VerticalOptions="Center"
+                     Command="{Binding SelectImageCommand}"/>
+
+        <VerticalStackLayout Grid.Column="1">
+            <Entry Placeholder="Введите название приложения"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="5" Text="{Binding Title}"/>
+            <Entry Placeholder="Введите имя пользователя"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="5" Text="{Binding UserLogin}"/> 
+            <Entry Placeholder="Введите пароль"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="5" Text="{Binding UserPassword}"/>
+        </VerticalStackLayout>
+
+        <Button Text="Сохранить" Grid.Row="1" 
+                Grid.RowSpan="2" HorizontalOptions="Center" 
+                VerticalOptions="Center" Command="{Binding SaveCommand}"/>
+
+    </Grid>
+    
+</ContentPage>
