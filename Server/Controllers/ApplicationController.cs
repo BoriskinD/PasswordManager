@@ -37,7 +37,7 @@ namespace Server.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Update(Application application) 
+        public async Task<IActionResult> Update(Application application)
         {
             context.Entry(application).State = EntityState.Modified;
             await context.SaveChangesAsync();
@@ -52,12 +52,44 @@ namespace Server.Controllers
         {
             Application? applicationToDelete = await context.Application.FindAsync(id);
             if (applicationToDelete == null)
-                 return NotFound();
+                return NotFound();
 
             context.Application.Remove(applicationToDelete);
             await context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterUser([FromBody] User user)
+        {
+            if (context.Users.Any(u => u.Login == user.Login))
+            {
+                return BadRequest();
+            }
+
+            string hashPassword = PasswordHelper.CreateHash(user.Password);
+            User registeredUser = new User()
+            {
+                Login = user.Login,
+                Password = hashPassword,
+            };
+            context.Users.Add(registeredUser);
+            context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] User user)
+        { 
+            User? loginedUser = context.Users.FirstOrDefault(u => u.Login == user.Login);
+            if (loginedUser != null && PasswordHelper.VerifyPassword(user.Password, loginedUser.Password))
+            { 
+                
+            }
+
+            return Unauthorized();
         }
     }
 }

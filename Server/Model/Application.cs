@@ -19,6 +19,6 @@ namespace Server.Model
 
         public int UserId { get; set; }
 
-        public Users User { get; set; } = null!;
+        public User User { get; set; } = null!;
     }
 }

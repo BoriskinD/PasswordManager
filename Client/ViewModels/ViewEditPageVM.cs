@@ -153,7 +153,7 @@ namespace Client.ViewModels
             }
             else
             {
-                WeakReferenceMessenger.Default.Send(new Message("Не удалось изменить данные", false), 2);
+                WeakReferenceMessenger.Default.Send(new Message("Не удалось изменить данные"), 2);
             }
         }
 

@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Projects\\PWDManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\tokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\tokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\model\\httpwrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\model\\httpwrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TokenGenerator.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\TokenGenerator.cs",
+              "RelativeDocumentMoniker": "Server\\TokenGenerator.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Server\\TokenGenerator.cs",
+              "RelativeToolTip": "Server\\TokenGenerator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:32:39.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PasswordHelper.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\PasswordHelper.cs",
+              "RelativeDocumentMoniker": "Server\\PasswordHelper.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Server\\PasswordHelper.cs",
+              "RelativeToolTip": "Server\\PasswordHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:19:26.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationController.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ApplicationController.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ApplicationController.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAcwF4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T09:47:48.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HttpWrapper.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\Model\\HttpWrapper.cs",
+              "RelativeDocumentMoniker": "Client\\Model\\HttpWrapper.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\Model\\HttpWrapper.cs",
+              "RelativeToolTip": "Client\\Model\\HttpWrapper.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAwwEQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T10:03:03.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginPageVM.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
+              "RelativeDocumentMoniker": "Client\\ViewModels\\LoginPageVM.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
+              "RelativeToolTip": "Client\\ViewModels\\LoginPageVM.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAwwCMAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T09:45:01.947Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

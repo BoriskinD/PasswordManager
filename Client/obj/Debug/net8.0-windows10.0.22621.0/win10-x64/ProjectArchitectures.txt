@@ -1,1 +1,1 @@
-F:\Projects\PWDManager\PWDManager\Client\Client.csproj;x64
+F:\Projects\PWDManager\Client\Client.csproj;x64

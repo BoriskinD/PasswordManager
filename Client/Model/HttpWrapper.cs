@@ -64,5 +64,14 @@ namespace Client.Model
             using HttpResponseMessage responce = await httpClient.DeleteAsync($"{apiUrl}{id}");
             return responce.IsSuccessStatusCode;
         }
+
+        public async Task<HttpResponseMessage> RegisterUser(User user)
+        {
+            string jsonString = JsonConvert.SerializeObject(user);
+            StringContent content = new StringContent(jsonString, Encoding.UTF8, mediaType);
+
+            using HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}register", content);
+            return response;
+        }
     }
 }

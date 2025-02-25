@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WaomsPU5MU9OoAFzxyfRxYCrtNupyhJL29opED4S5cLQ0UUnTcAr0z/jtosGxaksN4M9zgwnw93+exPL/ipzHA==",
+  "dgSpecHash": "2ob52+IUpK5CaONo8aV70absMQpEProRUae/bTWx9Xbka8GoVk+0l9N0OAvvqCq50ayi6inXpXGPhPBUsBS7/g==",
   "success": true,
-  "projectFilePath": "F:\\Projects\\PWDManager\\PWDManager\\Client\\Client.csproj",
+  "projectFilePath": "F:\\Projects\\PWDManager\\Client\\Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",

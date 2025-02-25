@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Projects\\PWDManager\\PWDManager\\Client\\Client.csproj": {}
+    "F:\\Projects\\PWDManager\\Client\\Client.csproj": {}
   },
   "projects": {
-    "F:\\Projects\\PWDManager\\PWDManager\\Client\\Client.csproj": {
+    "F:\\Projects\\PWDManager\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Projects\\PWDManager\\PWDManager\\Client\\Client.csproj",
+        "projectUniqueName": "F:\\Projects\\PWDManager\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "F:\\Projects\\PWDManager\\PWDManager\\Client\\Client.csproj",
+        "projectPath": "F:\\Projects\\PWDManager\\Client\\Client.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "F:\\Projects\\PWDManager\\PWDManager\\Client\\obj\\",
+        "outputPath": "F:\\Projects\\PWDManager\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [

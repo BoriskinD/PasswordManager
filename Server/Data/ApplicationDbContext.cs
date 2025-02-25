@@ -13,13 +13,13 @@ namespace Server.Data
         public DbSet<Application> Application { get; set; }
 
         //Представляет таблицу в БД с именем Users
-        public DbSet<Users> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Установка связи "1 ко многим" между таблицами Users и Application
             //Один пользователь может иметь много приложений
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                         .HasMany(user => user.Apps)
                         .WithOne(application => application.User)
                         .HasForeignKey(application => application.UserId)
