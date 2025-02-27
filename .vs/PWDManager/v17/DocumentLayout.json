@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "F:\\Projects\\PWDManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\tokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\tokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Projects\\PWDManager\\Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\viewmodels\\addpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\addpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\controllers\\applicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\model\\httpwrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\model\\httpwrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|f:\\projects\\pwdmanager\\server\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E499E857-85ED-4B66-9148-ADDA5A880299}|Server\\Server.csproj|solutionrelative:server\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|f:\\projects\\pwdmanager\\client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,66 +51,118 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TokenGenerator.cs",
-              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\TokenGenerator.cs",
-              "RelativeDocumentMoniker": "Server\\TokenGenerator.cs",
-              "ToolTip": "F:\\Projects\\PWDManager\\Server\\TokenGenerator.cs",
-              "RelativeToolTip": "Server\\TokenGenerator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Title": "App.g.i.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "RelativeDocumentMoniker": "Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "RelativeToolTip": "Client\\obj\\Debug\\net8.0-windows10.0.22621.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAuwFEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:32:39.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PasswordHelper.cs",
-              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\PasswordHelper.cs",
-              "RelativeDocumentMoniker": "Server\\PasswordHelper.cs",
-              "ToolTip": "F:\\Projects\\PWDManager\\Server\\PasswordHelper.cs",
-              "RelativeToolTip": "Server\\PasswordHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:19:26.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApplicationController.cs",
-              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
-              "RelativeDocumentMoniker": "Server\\Controllers\\ApplicationController.cs",
-              "ToolTip": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
-              "RelativeToolTip": "Server\\Controllers\\ApplicationController.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAcwF4AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T09:47:48.341Z",
+              "WhenOpened": "2025-02-27T10:29:58.334Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "HttpWrapper.cs",
-              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\Model\\HttpWrapper.cs",
-              "RelativeDocumentMoniker": "Client\\Model\\HttpWrapper.cs",
-              "ToolTip": "F:\\Projects\\PWDManager\\Client\\Model\\HttpWrapper.cs",
-              "RelativeToolTip": "Client\\Model\\HttpWrapper.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAwwEQAAAAJAAAA",
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "Client\\Views\\LoginPage.xaml",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml",
+              "RelativeToolTip": "Client\\Views\\LoginPage.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-27T10:26:39.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginPage.xaml.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml.cs",
+              "RelativeDocumentMoniker": "Client\\Views\\LoginPage.xaml.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml.cs",
+              "RelativeToolTip": "Client\\Views\\LoginPage.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T10:03:03.949Z",
+              "WhenOpened": "2025-02-27T10:25:28.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "Client\\MauiProgram.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
+              "RelativeToolTip": "Client\\MauiProgram.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T10:22:00.353Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "LoginPageVM.cs",
-              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
-              "RelativeDocumentMoniker": "Client\\ViewModels\\LoginPageVM.cs",
-              "ToolTip": "F:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
-              "RelativeToolTip": "Client\\ViewModels\\LoginPageVM.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAwwCMAAAALAAAA",
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\AppShell.xaml",
+              "RelativeDocumentMoniker": "Client\\AppShell.xaml",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\AppShell.xaml",
+              "RelativeToolTip": "Client\\AppShell.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-27T10:02:37.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Client\\App.xaml.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\App.xaml.cs",
+              "RelativeToolTip": "Client\\App.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T09:45:01.947Z",
+              "WhenOpened": "2025-02-27T10:02:10.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainPageVM.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
+              "RelativeDocumentMoniker": "Client\\ViewModels\\MainPageVM.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
+              "RelativeToolTip": "Client\\ViewModels\\MainPageVM.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAmwEUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T09:40:39.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddPageVM.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Client\\ViewModels\\AddPageVM.cs",
+              "RelativeDocumentMoniker": "Client\\ViewModels\\AddPageVM.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Client\\ViewModels\\AddPageVM.cs",
+              "RelativeToolTip": "Client\\ViewModels\\AddPageVM.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAuwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T09:31:34.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationController.cs",
+              "DocumentMoniker": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ApplicationController.cs",
+              "ToolTip": "F:\\Projects\\PWDManager\\Server\\Controllers\\ApplicationController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ApplicationController.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAcwD8AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T09:47:48.341Z",
               "EditorCaption": ""
             }
           ]

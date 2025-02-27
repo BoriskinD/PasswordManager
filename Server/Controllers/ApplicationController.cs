@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Model;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Server.Controllers
 {
@@ -60,7 +61,7 @@ namespace Server.Controllers
             return NoContent();
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> RegisterUser([FromBody] User user)
         {
             if (context.Users.Any(u => u.Login == user.Login))
@@ -85,8 +86,9 @@ namespace Server.Controllers
         { 
             User? loginedUser = context.Users.FirstOrDefault(u => u.Login == user.Login);
             if (loginedUser != null && PasswordHelper.VerifyPassword(user.Password, loginedUser.Password))
-            { 
-                
+            {
+                string token = TokenGenerator.GenerateJwtToken(loginedUser);
+                return Ok(token);
             }
 
             return Unauthorized();

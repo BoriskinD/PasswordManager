@@ -1,4 +1,6 @@
 ﻿
+using Client.Views;
+
 namespace Client
 {
     public partial class App : Application
@@ -6,16 +8,17 @@ namespace Client
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            MainPage = new LoginPage();
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            Window window = base.CreateWindow(activationState);
-            window.Height = 850;
-            window.Width = 1300;
+        //protected override Window CreateWindow(IActivationState? activationState)
+        //{
+        //    Window window = base.CreateWindow(activationState);
+        //    window.Height = 850;
+        //    window.Width = 1300;
 
-            return window;
-        }
+        //    return window;
+        //}
     }
 }

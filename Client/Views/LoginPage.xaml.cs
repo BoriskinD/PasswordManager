@@ -1,3 +1,4 @@
+using Client.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace Client.Views;
@@ -7,6 +8,7 @@ public partial class LoginPage : ContentPage
 	public LoginPage()
 	{
 		InitializeComponent();
+        BindingContext = new LoginPageVM();
         WeakReferenceMessenger.Default.Register<Message, int>(this, 2, (r, m) =>
         {
             OnMessageReceived(m);
