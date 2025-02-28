@@ -6,7 +6,7 @@
 
         public string? Login { get; set; }
 
-        public string? Password { get; set; }
+        public string? PasswordHash { get; set; }
 
         public List<Application> Apps { get; set; } = new List<Application>();
     }

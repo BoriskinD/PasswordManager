@@ -10,7 +10,7 @@ namespace Client.ViewModels
         private string? userLogin, userPassword;
         private HttpWrapper httpWrapper;
 
-        private Window mainWindow;
+        private Window? mainWindow;
 
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
@@ -39,13 +39,13 @@ namespace Client.ViewModels
             User user = new User()
             {
                 Login = userLogin,
-                Password = userPassword
+                PasswordHash = userPassword
             };
 
             using HttpResponseMessage response = await httpWrapper.Login(user);
             if (response.IsSuccessStatusCode)
-            { 
-                string responseContent = response.Content.ReadAsStringAsync().Result;
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
                 LoginResponse? loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
 
                 await SecureStorage.SetAsync("Accsess Token", loginResponse.Token);
@@ -60,8 +60,7 @@ namespace Client.ViewModels
             }
             else
             {
-                string responseContent = response.Content.ReadAsStringAsync().Result;
-                WeakReferenceMessenger.Default.Send(new Message(responseContent), 3);
+                WeakReferenceMessenger.Default.Send(new Message("Ошибка входа!"), 3);
             }
         }
 
@@ -76,17 +75,19 @@ namespace Client.ViewModels
             User newUser = new User()
             {
                 Login = userLogin,
-                Password = userPassword,
+                PasswordHash = userPassword,
             };
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
-            if (response.IsSuccessStatusCode)
             {
-                WeakReferenceMessenger.Default.Send(new Message("Регистрация прошла успешно!"), 3);
-            }
-            else
-            {
-                WeakReferenceMessenger.Default.Send(new Message("Ошибка регистрации!"), 3);
+                if (response.IsSuccessStatusCode)
+                {
+                    WeakReferenceMessenger.Default.Send(new Message("Регистрация прошла успешно!"), 3);
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(new Message("Ошибка регистрации"), 3);
+                }
             }
         }
     }

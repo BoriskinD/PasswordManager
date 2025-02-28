@@ -9,7 +9,8 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new LoginPageVM();
-        WeakReferenceMessenger.Default.Register<Message, int>(this, 2, (r, m) =>
+
+        WeakReferenceMessenger.Default.Register<Message, int>(this, 3, (r, m) =>
         {
             OnMessageReceived(m);
         });

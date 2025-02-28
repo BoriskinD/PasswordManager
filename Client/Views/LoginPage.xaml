@@ -7,12 +7,12 @@
         <Entry Placeholder="Логин"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
-               Margin="5" Text="{Binding Title}"/>
+               Margin="5" Text="{Binding UserLogin}"/>
         
         <Entry Placeholder="Пароль"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
-               Margin="5" Text="{Binding Title}"/>
+               Margin="5" Text="{Binding UserPassword}"/>
         
         <Button Text="Войти"
                 HorizontalOptions="Center"
