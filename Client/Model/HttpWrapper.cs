@@ -70,7 +70,7 @@ namespace Client.Model
             string jsonString = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonString, Encoding.UTF8, mediaType);
 
-            using HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}Register", content);
+            HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}Register", content);
             return response;
         }
 
@@ -79,7 +79,7 @@ namespace Client.Model
             string jsonString = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonString, Encoding.UTF8, mediaType);
 
-            using HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}Login", content);
+            HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}Login", content);
             return response;
         }
     }

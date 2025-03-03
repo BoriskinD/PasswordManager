@@ -143,18 +143,19 @@ namespace Client.ViewModels
                 ImagePath = ImagePath
             };
 
-            HttpResponseMessage response = await httpWrapper.Put(changedApp);
-            if (response.IsSuccessStatusCode)
+            using HttpResponseMessage response = await httpWrapper.Put(changedApp);
             {
-                //СВЯЗАНО С ViewEditPage.xaml.cs
-                WeakReferenceMessenger.Default.Send(new Message("Данные изменены", true), 2);
-
-                AppChanged?.Invoke(changedApp);
-            }
-            else
-            {
-                WeakReferenceMessenger.Default.Send(new Message("Не удалось изменить данные"), 2);
-            }
+                if (response.IsSuccessStatusCode)
+                {
+                    //СВЯЗАНО С ViewEditPage.xaml.cs
+                    WeakReferenceMessenger.Default.Send(new Message("Данные изменены", true), 2);
+                    AppChanged?.Invoke(changedApp);
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(new Message("Не удалось изменить данные"), 2);
+                }
+            }  
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

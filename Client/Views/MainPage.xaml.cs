@@ -6,10 +6,11 @@ namespace Client
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(User user)
         {
             InitializeComponent();
-            BindingContext = new MainPageVM();
+
+            BindingContext = new MainPageVM(user);
             WeakReferenceMessenger.Default.Register<Message,int>(this, 0, (r, m) => 
             { 
                 OnMessageReceived(m); 

@@ -12,6 +12,7 @@ namespace Client.ViewModels
         private HttpWrapper httpWrapper;
         private string? title, userLogin, userPassword, imagePath;
         private string baseDirectory, imageFolder, pathToImage, selectedImage;
+        private int _userId;
 
         public delegate void NewAppCreatedHandler(MyApp newApp);
         public event NewAppCreatedHandler? NewAppCreated;
@@ -57,13 +58,15 @@ namespace Client.ViewModels
             }
         }
 
-        public AddPageVM()
+        public AddPageVM(int userId)
         {
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory; 
             imageFolder = Path.Combine(baseDirectory, "Images");
+
             ImagePath = "dotnet_bot.png";
             pathToImage = string.Empty;
             selectedImage = string.Empty;
+            _userId = userId;
 
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
@@ -74,6 +77,7 @@ namespace Client.ViewModels
         {
             MyApp newApp = new MyApp()
             {
+                UserId = _userId,
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
@@ -82,24 +86,26 @@ namespace Client.ViewModels
 
             bool IsSuccess;
             using HttpResponseMessage response = await httpWrapper.Post(newApp);
-            if (response.IsSuccessStatusCode)
             {
-                string jsonString = response.Content.ReadAsStringAsync().Result;
-                newApp.Id = int.Parse(jsonString);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    newApp.Id = int.Parse(responseContent);
 
-                IsSuccess = true;
-                //СВЯЗАНО С AddPage.xaml.cs
-                WeakReferenceMessenger.Default.Send(new Message("Данные были успешно добавлены.", IsSuccess), 1);
+                    IsSuccess = true;
+                    //СВЯЗАНО С AddPage.xaml.cs
+                    WeakReferenceMessenger.Default.Send(new Message("Данные были успешно добавлены.", IsSuccess), 1);
 
-                File.Copy(selectedImage, pathToImage, true);
+                    File.Copy(selectedImage, pathToImage, true);
 
-                NewAppCreated?.Invoke(newApp);
-            }
-            else
-            {
-                IsSuccess = false;
-                WeakReferenceMessenger.Default.Send(new Message("Не удалось добавить данные.", IsSuccess), 1);
-            }
+                    NewAppCreated?.Invoke(newApp);
+                }
+                else
+                {
+                    IsSuccess = false;
+                    WeakReferenceMessenger.Default.Send(new Message("Не удалось добавить данные.", IsSuccess), 1);
+                }
+            } 
         }
 
         private async void SelectImage() 

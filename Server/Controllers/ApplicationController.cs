@@ -89,7 +89,7 @@ namespace Server.Controllers
             {
                 string token = TokenGenerator.GenerateJwtToken(loginedUser);
                 //Возвращаем анонимный объект
-                return Ok(new { Token = token });
+                return Ok(new { UserId = loginedUser.Id, Token = token });
             }
 
             return Unauthorized();

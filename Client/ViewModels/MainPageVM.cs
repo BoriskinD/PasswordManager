@@ -3,11 +3,14 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Client.ViewModels
 {
-    class MainPageVM
+    class MainPageVM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
         public ObservableCollection<MyApp> Apps { get; }
         public ICommand OpenAddPageCommand { get; }
         public ICommand DeleteItemCommand { get; }
@@ -17,8 +20,22 @@ namespace Client.ViewModels
         private Window? addWindow, viewEditWindow;
         private MyApp? selectedApp;
         private HttpWrapper httpWrapper;
+        //залогиненный пользователь
+        private User _user;
 
-        public MainPageVM()
+        private string userName;
+
+        public string UserInfo
+        { 
+            get => userName;
+            set
+            {
+                userName = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        public MainPageVM(User user)
         {
             httpWrapper = HttpWrapper.GetInstance();
             Apps = new ObservableCollection<MyApp>();
@@ -26,10 +43,13 @@ namespace Client.ViewModels
             DeleteItemCommand = new RelayCommand(DeleteItem);
             OpenViewEditPageCommand = new RelayCommand(OpenViewEditPage);
             DownloadDataFromDBCommand = new RelayCommand(DownloadDataFromDataBase);
+            _user = user;
 
             addWindow = null;
             viewEditWindow = null;
             selectedApp = null;
+
+            UserInfo = $"Пользователь: {_user.Login}";
 
             WeakReferenceMessenger.Default.Register<DataToPass>(this, (r, m) => 
             { 
@@ -42,7 +62,8 @@ namespace Client.ViewModels
             if (addWindow == null)
             {
                 AddPage addPage = new AddPage();
-                AddPageVM addPageVM = new AddPageVM();
+                AddPageVM addPageVM = new AddPageVM(_user.Id);
+
                 addPageVM.NewAppCreated += OnNewAppCreated;
                 addPage.BindingContext = addPageVM;
                 
@@ -54,6 +75,7 @@ namespace Client.ViewModels
                 };
                 addWindow.Width = 500;
                 addWindow.Height = 500;
+
                 Application.Current?.OpenWindow(addWindow);
             }
         }
@@ -64,6 +86,7 @@ namespace Client.ViewModels
             {
                 ViewEditPage viewEditPage = new ViewEditPage();
                 ViewEditPageVM viewEditPageVM = new ViewEditPageVM(selectedApp);
+
                 viewEditPageVM.AppChanged += OnAppChanged;
                 viewEditPage.BindingContext = viewEditPageVM;
 
@@ -118,5 +141,8 @@ namespace Client.ViewModels
                 tmp.UserPassword = changedApp.UserPassword;
             }
         }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
+                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

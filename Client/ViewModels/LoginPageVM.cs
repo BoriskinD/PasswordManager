@@ -43,24 +43,27 @@ namespace Client.ViewModels
             };
 
             using HttpResponseMessage response = await httpWrapper.Login(user);
-            if (response.IsSuccessStatusCode)
             {
-                var responseContent = await response.Content.ReadAsStringAsync();
-                LoginResponse? loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
-
-                await SecureStorage.SetAsync("Accsess Token", loginResponse.Token);
-
-                MainPage mainPage = new MainPage();
-                mainWindow = new Window(mainPage)
+                if (response.IsSuccessStatusCode)
                 {
-                    Height = 500,
-                    Width = 500,
-                };
-                Application.Current?.OpenWindow(mainWindow);
-            }
-            else
-            {
-                WeakReferenceMessenger.Default.Send(new Message("Ошибка входа!"), 3);
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    LoginResponse? loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
+                    user.Id = loginResponse.UserId;
+
+                    await SecureStorage.SetAsync("Accsess Token", loginResponse.Token);
+
+                    MainPage mainPage = new MainPage(user);
+                    mainWindow = new Window(mainPage)
+                    {
+                        Height = 500,
+                        Width = 500,
+                    };
+                    Application.Current?.OpenWindow(mainWindow);
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(new Message("Ошибка входа!"), 3);
+                }
             }
         }
 
