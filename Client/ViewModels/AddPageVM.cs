@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Security.Principal;
 
 namespace Client.ViewModels
 {
@@ -84,7 +83,10 @@ namespace Client.ViewModels
                 ImagePath = ImagePath
             };
 
-            bool IsSuccess;
+            string? token = await SecureStorage.GetAsync("Accsess Token");
+            //Передаем токен в запрос
+            httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
             using HttpResponseMessage response = await httpWrapper.Post(newApp);
             {
                 if (response.IsSuccessStatusCode)
@@ -92,9 +94,8 @@ namespace Client.ViewModels
                     string responseContent = await response.Content.ReadAsStringAsync();
                     newApp.Id = int.Parse(responseContent);
 
-                    IsSuccess = true;
                     //СВЯЗАНО С AddPage.xaml.cs
-                    WeakReferenceMessenger.Default.Send(new Message("Данные были успешно добавлены.", IsSuccess), 1);
+                    WeakReferenceMessenger.Default.Send(new Message("Данные были успешно добавлены.", true), 1);
 
                     File.Copy(selectedImage, pathToImage, true);
 
@@ -102,8 +103,7 @@ namespace Client.ViewModels
                 }
                 else
                 {
-                    IsSuccess = false;
-                    WeakReferenceMessenger.Default.Send(new Message("Не удалось добавить данные.", IsSuccess), 1);
+                    WeakReferenceMessenger.Default.Send(new Message("Не удалось добавить данные."), 1);
                 }
             } 
         }

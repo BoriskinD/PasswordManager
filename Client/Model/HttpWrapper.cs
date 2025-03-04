@@ -5,8 +5,9 @@ namespace Client.Model
 {
     public class HttpWrapper
     {
+        public HttpClient httpClient;
+
         private static HttpWrapper? instance;
-        private HttpClient httpClient;
         private string apiUrl, mediaType;
 
         private HttpWrapper()

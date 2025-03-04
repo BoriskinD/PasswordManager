@@ -9,7 +9,7 @@ namespace Server
     public class TokenGenerator
     {
         //Так хранить ключ нельзя, но в целях пет проекта допустимо
-        private static string key = "Si09MrZkaDpl8AOpz9AyZEslu2kvJJrK9570b7LicXq5IRylU0oY54x+wm/acooO";
+        public static string key = "Si09MrZkaDpl8AOpz9AyZEslu2kvJJrK9570b7LicXq5IRylU0oY54x+wm/acooO";
 
         public static string GenerateJwtToken(User user)
         {

@@ -23,7 +23,7 @@ namespace Client.ViewModels
         //залогиненный пользователь
         private User _user;
 
-        private string userName;
+        private string? userName;
 
         public string UserInfo
         { 

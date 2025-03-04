@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Model;
-using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Server.Controllers
 {
@@ -14,16 +15,22 @@ namespace Server.Controllers
 
         public ApplicationController(ApplicationDbContext context) => this.context = context;
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(Application), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get()
         {
-            var applications = await context.Application.ToListAsync();
+            //Класс User представляет авторизированного пользователя и заполняется middleware, содержит данные из JWT токена пользователя
+            //Извлекам id пользователя из токена
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var applications = await context.Application.Where(app => app.UserId == int.Parse(userId)).ToListAsync();
             return applications.Any() == true ? Ok(applications) : NotFound();
         }
 
         //Добавление
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Create(Application application)
@@ -35,30 +42,48 @@ namespace Server.Controllers
         }
 
         //Редактирование
+        [Authorize]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(Application application)
         {
-            context.Entry(application).State = EntityState.Modified;
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            Application? applicationToUpdate = await context.Application.FirstOrDefaultAsync(app => app.Id == application.Id && app.UserId == int.Parse(userId));
+            if (applicationToUpdate == null)
+            { 
+                return NotFound();
+            }
+
+            applicationToUpdate.Title = application.Title;
+            applicationToUpdate.UserLogin = application.UserLogin;
+            applicationToUpdate.UserPassword = application.UserPassword;
+            applicationToUpdate.ImagePath = application.ImagePath;
+
             await context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
-            Application? applicationToDelete = await context.Application.FindAsync(id);
-            if (applicationToDelete == null)
-                return NotFound();
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            Application? applicationToDelete = await context.Application.FirstOrDefaultAsync(app => app.Id == id && app.UserId == int.Parse(userId));
+            if (applicationToDelete == null)
+            {
+                return NotFound();
+            }    
+                
             context.Application.Remove(applicationToDelete);
             await context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("Register")]
