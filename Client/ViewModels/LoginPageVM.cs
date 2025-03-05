@@ -36,6 +36,9 @@ namespace Client.ViewModels
 
         private async void LoginUser()
         {
+            //очистить старый токен
+            SecureStorage.Remove("AccsessToken");
+
             User user = new User()
             {
                 Login = userLogin,
@@ -50,7 +53,7 @@ namespace Client.ViewModels
                     LoginResponse? loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
                     user.Id = loginResponse.UserId;
 
-                    await SecureStorage.SetAsync("Accsess Token", loginResponse.Token);
+                    await SecureStorage.SetAsync("AccsessToken", loginResponse.Token);
 
                     MainPage mainPage = new MainPage(user);
                     mainWindow = new Window(mainPage)

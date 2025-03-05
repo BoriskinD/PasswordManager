@@ -62,7 +62,7 @@ namespace Client.ViewModels
             if (addWindow == null)
             {
                 AddPage addPage = new AddPage();
-                AddPageVM addPageVM = new AddPageVM(_user.Id);
+                AddPageVM addPageVM = new AddPageVM(_user);
 
                 addPageVM.NewAppCreated += OnNewAppCreated;
                 addPage.BindingContext = addPageVM;
@@ -107,6 +107,9 @@ namespace Client.ViewModels
             if (selectedApp == null)
                 return;
 
+            string? token = await SecureStorage.GetAsync($"AccsessToken");
+            httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
             await httpWrapper.Delete(selectedApp.Id);
             Apps.Remove(selectedApp);
         }
@@ -115,6 +118,9 @@ namespace Client.ViewModels
         {
             if (Apps.Count == 0)
             {
+                string? token = await SecureStorage.GetAsync($"AccsessToken");
+                httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
                 List<MyApp>? listOfApps = await httpWrapper.Get();
                 if (listOfApps != null)
                 {

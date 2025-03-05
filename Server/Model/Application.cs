@@ -15,10 +15,14 @@ namespace Server.Model
         [Required]
         public string? UserPassword { get; set; }
 
-        public string? ImagePath { get; set; }
-
+        [Required]
         public int UserId { get; set; }
 
-        public User User { get; set; } = null!;
+        public string? ImagePath { get; set; }
+
+        //Это свойство используетсся только для связи таблиц
+        //Является опциональным во избежание ошибок валидации т.к.
+        //класс Application (MyApp) не содержит свойство User на клиенте
+        public User? User { get; set; } 
     }
 }

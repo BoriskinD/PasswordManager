@@ -563,9 +563,6 @@ F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauii
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauifont.inputs
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauisplash.inputs
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauisplash.stamp
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@3x.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@2x.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appiconItunesArtwork.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon83.5x83.5@2x.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon76x76@2x.png
@@ -578,6 +575,9 @@ F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resiz
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon20x20@3x.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon20x20@2x.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\Contents.json
+F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@3x.png
+F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@2x.png
+F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauiimage.stamp
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\mauiimage.outputs
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\resizetizer\f\MauiInfo.plist

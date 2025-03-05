@@ -11,7 +11,7 @@ namespace Client.ViewModels
         private HttpWrapper httpWrapper;
         private string? title, userLogin, userPassword, imagePath;
         private string baseDirectory, imageFolder, pathToImage, selectedImage;
-        private int _userId;
+        private User _user;
 
         public delegate void NewAppCreatedHandler(MyApp newApp);
         public event NewAppCreatedHandler? NewAppCreated;
@@ -57,7 +57,7 @@ namespace Client.ViewModels
             }
         }
 
-        public AddPageVM(int userId)
+        public AddPageVM(User user)
         {
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory; 
             imageFolder = Path.Combine(baseDirectory, "Images");
@@ -65,7 +65,7 @@ namespace Client.ViewModels
             ImagePath = "dotnet_bot.png";
             pathToImage = string.Empty;
             selectedImage = string.Empty;
-            _userId = userId;
+            _user = user;
 
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
@@ -76,14 +76,14 @@ namespace Client.ViewModels
         {
             MyApp newApp = new MyApp()
             {
-                UserId = _userId,
+                UserId = _user.Id,
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
                 ImagePath = ImagePath
             };
 
-            string? token = await SecureStorage.GetAsync("Accsess Token");
+            string? token = await SecureStorage.GetAsync($"AccsessToken");
             //Передаем токен в запрос
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 

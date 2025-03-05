@@ -44,7 +44,7 @@ namespace Client.Model
         public async Task<HttpResponseMessage> Post(MyApp newApp)
         {
             string jsonString = JsonConvert.SerializeObject(newApp);
-            StringContent jsonContent = new(jsonString, Encoding.UTF8, mediaType);
+            StringContent jsonContent = new (jsonString, Encoding.UTF8, mediaType);
             HttpResponseMessage response = await httpClient.PostAsync(apiUrl, jsonContent);
 
             return response;
@@ -55,7 +55,7 @@ namespace Client.Model
         {
             string jsonString = JsonConvert.SerializeObject(changedApp);
             StringContent jsonContent = new(jsonString, Encoding.UTF8, mediaType);
-            HttpResponseMessage response = await httpClient.PutAsync($"{apiUrl}", jsonContent);
+            HttpResponseMessage response = await httpClient.PutAsync(apiUrl, jsonContent);
 
             return response;
         }
