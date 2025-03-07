@@ -11,6 +11,7 @@ namespace Client
             InitializeComponent();
 
             BindingContext = new MainPageVM(user);
+
             WeakReferenceMessenger.Default.Register<Message,int>(this, 0, (r, m) => 
             { 
                 OnMessageReceived(m); 

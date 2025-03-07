@@ -105,7 +105,9 @@ namespace Client.ViewModels
         private async void DeleteItem()
         {
             if (selectedApp == null)
+            {
                 return;
+            }
 
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

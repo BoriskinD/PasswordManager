@@ -19,6 +19,8 @@ namespace Client
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //Регистрация сервиса в DI контейнер
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             return builder.Build();
         }

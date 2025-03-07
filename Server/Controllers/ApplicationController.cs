@@ -91,7 +91,7 @@ namespace Server.Controllers
         {
             if (context.Users.Any(u => u.Login == user.Login))
             {
-                return BadRequest();
+                return BadRequest("Пользователь с таким именем уже существует!");
             }
 
             string hashPassword = PasswordHelper.CreateHash(user.PasswordHash);
@@ -103,7 +103,7 @@ namespace Server.Controllers
             context.Users.Add(registeredUser);
             context.SaveChanges();
 
-            return Ok();
+            return Ok("Регистрация прошла успешно, теперь выполните вход.");
         }
 
         [HttpPost("Login")]
@@ -117,7 +117,7 @@ namespace Server.Controllers
                 return Ok(new { UserId = loginedUser.Id, Token = token });
             }
 
-            return Unauthorized();
+            return Unauthorized("Авторизация не пройдена!");
         }
     }
 }

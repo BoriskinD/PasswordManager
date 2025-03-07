@@ -9,9 +9,11 @@ namespace Client.ViewModels
     {
         private string? userLogin, userPassword;
         private HttpWrapper httpWrapper;
+        private readonly INavigationService _navigationService;
 
-        private Window? mainWindow;
+        //private Window? mainWindow;
 
+        public event Action CloseCurrentWindow;
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
 
@@ -27,15 +29,22 @@ namespace Client.ViewModels
             set => userPassword = value; 
         }
 
-        public LoginPageVM()
+        public LoginPageVM(INavigationService navigationService)
         {
             httpWrapper = HttpWrapper.GetInstance();
             LoginCommand = new RelayCommand(LoginUser);
             RegisterCommand = new RelayCommand(RegisterNewUser);
+            _navigationService = navigationService;
         }
 
         private async void LoginUser()
         {
+            if (string.IsNullOrEmpty(UserLogin) || string.IsNullOrEmpty(UserPassword))
+            {
+                WeakReferenceMessenger.Default.Send(new Message("Не все поля заполнены!"), 3);
+                return;
+            }
+
             //очистить старый токен
             SecureStorage.Remove("AccsessToken");
 
@@ -56,16 +65,24 @@ namespace Client.ViewModels
                     await SecureStorage.SetAsync("AccsessToken", loginResponse.Token);
 
                     MainPage mainPage = new MainPage(user);
-                    mainWindow = new Window(mainPage)
+                    _navigationService.OpenWindow(window =>
                     {
-                        Height = 500,
-                        Width = 500,
-                    };
-                    Application.Current?.OpenWindow(mainWindow);
+                        window.Height = 700;
+                        window.Width = 600;
+                    }, mainPage);
+                    //mainWindow = new Window(mainPage)
+                    //{
+                    //    Height = 700,
+                    //    Width = 1000,
+                    //};
+                    //Application.Current?.OpenWindow(mainWindow);
+
+                    CloseCurrentWindow?.Invoke();
                 }
                 else
                 {
-                    WeakReferenceMessenger.Default.Send(new Message("Ошибка входа!"), 3);
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    WeakReferenceMessenger.Default.Send(new Message($"Не удалось войти. {responseContent}"), 3);
                 }
             }
         }
@@ -86,13 +103,14 @@ namespace Client.ViewModels
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {
+                string responseContent = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    WeakReferenceMessenger.Default.Send(new Message("Регистрация прошла успешно!"), 3);
+                    WeakReferenceMessenger.Default.Send(new Message(responseContent), 3);
                 }
                 else
                 {
-                    WeakReferenceMessenger.Default.Send(new Message("Ошибка регистрации"), 3);
+                    WeakReferenceMessenger.Default.Send(new Message($"Не далось зарегистрироваться. {responseContent}"), 3);
                 }
             }
         }

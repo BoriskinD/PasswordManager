@@ -8,12 +8,21 @@ public partial class LoginPage : ContentPage
 	public LoginPage()
 	{
 		InitializeComponent();
-        BindingContext = new LoginPageVM();
+
+        LoginPageVM loginPageVM = new LoginPageVM(new NavigationService());
+        loginPageVM.CloseCurrentWindow += LoginPageVM_CloseCurrentWindow;
+
+        BindingContext = loginPageVM;
 
         WeakReferenceMessenger.Default.Register<Message, int>(this, 3, (r, m) =>
         {
             OnMessageReceived(m);
         });
+    }
+
+    private void LoginPageVM_CloseCurrentWindow()
+    {
+        Application.Current?.CloseWindow(Window);
     }
 
     private async void OnMessageReceived(Message message)
