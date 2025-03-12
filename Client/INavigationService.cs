@@ -1,8 +1,8 @@
 ﻿namespace Client
 {
+    //Интерфейс навигации между окнами (чтобы не нарушать принципы MVVM)
     public interface INavigationService
     {
-        void OpenWindow(Action<Window> configureWindow, Page page);
-        Task NavigateToAsync<TPage>() where TPage : Page;
+        void OpenWindow<TPage>(object parameter, Action<Window> configureWindow) where TPage : Page;
     }
 }

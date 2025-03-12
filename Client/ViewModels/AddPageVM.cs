@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 
 namespace Client.ViewModels
 {
-    public class AddPageVM : INotifyPropertyChanged
+    public class AddPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         private HttpWrapper httpWrapper;
         private string? title, userLogin, userPassword, imagePath;
         private string baseDirectory, imageFolder, pathToImage, selectedImage;
-        private User _user;
+        private int _userId;
 
         public delegate void NewAppCreatedHandler(MyApp newApp);
         public event NewAppCreatedHandler? NewAppCreated;
@@ -57,7 +57,7 @@ namespace Client.ViewModels
             }
         }
 
-        public AddPageVM(User user)
+        public AddPageVM()
         {
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory; 
             imageFolder = Path.Combine(baseDirectory, "Images");
@@ -65,7 +65,6 @@ namespace Client.ViewModels
             ImagePath = "dotnet_bot.png";
             pathToImage = string.Empty;
             selectedImage = string.Empty;
-            _user = user;
 
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
@@ -76,7 +75,7 @@ namespace Client.ViewModels
         {
             MyApp newApp = new MyApp()
             {
-                UserId = _user.Id,
+                UserId = _userId,
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
@@ -99,7 +98,10 @@ namespace Client.ViewModels
 
                     File.Copy(selectedImage, pathToImage, true);
 
-                    NewAppCreated?.Invoke(newApp);
+                    //Передача данных в MainPageVM
+                    //WeakReferenceMessenger.Default.Send(new DataToPass(newApp));
+
+                    //NewAppCreated?.Invoke(newApp);
                 }
                 else
                 {
@@ -135,6 +137,14 @@ namespace Client.ViewModels
             catch (Exception)
             {
                 WeakReferenceMessenger.Default.Send(new Message("Не удалось выбрать указанный файл.", false), 1);
+            }
+        }
+
+        public void SetParameter(object parameter)
+        {
+            if (parameter is int userId)
+            {
+                _userId = userId;
             }
         }
 

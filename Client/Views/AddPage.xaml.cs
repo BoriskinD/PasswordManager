@@ -1,12 +1,16 @@
+using Client.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace Client;
 
 public partial class AddPage : ContentPage
 {
-	public AddPage()
+	public AddPage(AddPageVM addPageVM)
 	{
 		InitializeComponent();
+
+		BindingContext = addPageVM;
+
 		WeakReferenceMessenger.Default.Register<Message,int>(this, 1, (r, m) => 
 		{ 
 			OnMessageReceived(m); 

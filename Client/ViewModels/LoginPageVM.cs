@@ -11,8 +11,6 @@ namespace Client.ViewModels
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        //private Window? mainWindow;
-
         public event Action CloseCurrentWindow;
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
@@ -64,18 +62,12 @@ namespace Client.ViewModels
 
                     await SecureStorage.SetAsync("AccsessToken", loginResponse.Token);
 
-                    MainPage mainPage = new MainPage(user);
-                    _navigationService.OpenWindow(window =>
+                    _navigationService.OpenWindow<MainPage>(user, window =>
                     {
+                        window.Title = "PWDManager";
                         window.Height = 700;
                         window.Width = 600;
-                    }, mainPage);
-                    //mainWindow = new Window(mainPage)
-                    //{
-                    //    Height = 700,
-                    //    Width = 1000,
-                    //};
-                    //Application.Current?.OpenWindow(mainWindow);
+                    });
 
                     CloseCurrentWindow?.Invoke();
                 }

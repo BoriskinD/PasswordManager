@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Client.ViewModels;
+using Client.Views;
+using Microsoft.Extensions.Logging;
 
 namespace Client
 {
@@ -19,8 +21,14 @@ namespace Client
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            //Регистрация сервиса в DI контейнер
+            //Регистрация сервисов в DI контейнер
             builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddTransient<LoginPageVM>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<MainPageVM>();
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<AddPage>();
+            builder.Services.AddTransient<AddPageVM>();
 
             return builder.Build();
         }

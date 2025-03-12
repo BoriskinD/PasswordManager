@@ -2,21 +2,29 @@
 {
     public class NavigationService : INavigationService
     {
-        public async Task NavigateToAsync<TPage>() where TPage : Page
+        //DI контейнер
+        private readonly IServiceProvider _serviceProvider;
+
+        public NavigationService(IServiceProvider serviceProvider)
         {
-           Page page = Activator.CreateInstance<TPage>();
-           await Shell.Current.Navigation.PushAsync(page);
+            _serviceProvider = serviceProvider;
         }
 
-        public void OpenWindow(Action<Window> configureWindow, Page page)
+        public void OpenWindow<TPage>(object parameter, Action<Window> configureWindow) where TPage : Page
         {
-            //Создать окно
+            //Создать страницу
+            TPage page = _serviceProvider.GetRequiredService<TPage>();
+
+            if (page.BindingContext is IParameterReceiver receiver && parameter != null)
+            { 
+                receiver.SetParameter(parameter);
+            }
+
             Window window = new Window(page);
 
             //Настроить окно
             configureWindow?.Invoke(window);
 
-            //Открыть новое окно
             Application.Current?.OpenWindow(window);
         }
     }

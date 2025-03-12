@@ -4,10 +4,11 @@ namespace Client
 {
     public partial class App : Application
     {
-        public App()
+        //loginPage создаётся и передаётся в метод с помощью DI контейнера
+        public App(LoginPage loginPage)
         {
             InitializeComponent();
-            MainPage = new LoginPage();
+            MainPage = loginPage;
         }
     }
 }

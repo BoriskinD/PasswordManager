@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Client.ViewModels
 {
-    class MainPageVM : INotifyPropertyChanged
+    public class MainPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ObservableCollection<MyApp> Apps { get; }
@@ -16,26 +16,20 @@ namespace Client.ViewModels
         public ICommand DeleteItemCommand { get; }
         public ICommand OpenViewEditPageCommand { get; }
         public ICommand DownloadDataFromDBCommand { get; }
+        public event Action CloseCurrentWindow;
 
-        private Window? addWindow, viewEditWindow;
         private MyApp? selectedApp;
         private HttpWrapper httpWrapper;
-        //залогиненный пользователь
-        private User _user;
+        private readonly INavigationService _navigationService;
 
-        private string? userName;
-
+        //Залогиненный пользователь
+        private User? loginedUser;
         public string UserInfo
         { 
-            get => userName;
-            set
-            {
-                userName = value;
-                OnPropertyChanged();
-            } 
+            get => loginedUser?.Login;
         }
 
-        public MainPageVM(User user)
+        public MainPageVM(INavigationService navigationService)
         {
             httpWrapper = HttpWrapper.GetInstance();
             Apps = new ObservableCollection<MyApp>();
@@ -43,62 +37,76 @@ namespace Client.ViewModels
             DeleteItemCommand = new RelayCommand(DeleteItem);
             OpenViewEditPageCommand = new RelayCommand(OpenViewEditPage);
             DownloadDataFromDBCommand = new RelayCommand(DownloadDataFromDataBase);
-            _user = user;
-
-            addWindow = null;
-            viewEditWindow = null;
+            _navigationService = navigationService;
             selectedApp = null;
 
-            UserInfo = $"Пользователь: {_user.Login}";
-
             WeakReferenceMessenger.Default.Register<DataToPass>(this, (r, m) => 
-            { 
+            {
+                //if (r is AddPageVM)
+                //{
+                //    OnNewAppCreated(m.MyApp);
+                //}
                 selectedApp = m.MyApp; 
             });
         }
 
         private void OpenAddPage()
         {
-            if (addWindow == null)
+            //if (addWindow == null)
+            //{
+            //AddPage addPage = new AddPage();
+            _navigationService.OpenWindow<AddPage>(loginedUser.Id, window =>
             {
-                AddPage addPage = new AddPage();
-                AddPageVM addPageVM = new AddPageVM(_user);
+                window.Width = 500;
+                window.Height = 500;
+            });
 
-                addPageVM.NewAppCreated += OnNewAppCreated;
-                addPage.BindingContext = addPageVM;
-                
-                addWindow = new Window(addPage);
-                addWindow.Destroying += (s, e) => 
-                { 
-                    addPageVM.NewAppCreated -= OnNewAppCreated;
-                    addWindow = null;
-                };
-                addWindow.Width = 500;
-                addWindow.Height = 500;
+            //AddPageVM addPageVM = new AddPageVM(_user);
 
-                Application.Current?.OpenWindow(addWindow);
-            }
+            //addPageVM.NewAppCreated += OnNewAppCreated;
+
+            //addPage.BindingContext = addPageVM;
+
+            //addWindow = new Window(addPage);
+            //addWindow.Destroying += (s, e) => 
+            //{ 
+            //    addPageVM.NewAppCreated -= OnNewAppCreated;
+            //    addWindow = null;
+            //};
+            //addWindow.Width = 500;
+            //addWindow.Height = 500;
+
+            //Application.Current?.OpenWindow(addWindow);
+            //}
         }
 
         private void OpenViewEditPage()
         {
-            if (viewEditWindow == null)
-            {
-                ViewEditPage viewEditPage = new ViewEditPage();
-                ViewEditPageVM viewEditPageVM = new ViewEditPageVM(selectedApp);
+            //_navigationService.OpenWindow<LoginPage>(window =>
+            //{
+            //    window.Width = 500;
+            //    window.Height = 500;
+            //});
 
-                viewEditPageVM.AppChanged += OnAppChanged;
-                viewEditPage.BindingContext = viewEditPageVM;
+            CloseCurrentWindow?.Invoke();
 
-                viewEditWindow = new Window(viewEditPage);
-                viewEditWindow.Destroying += (s, e) =>
-                {
-                    viewEditWindow = null;
-                };
-                viewEditWindow.Width = 500;
-                viewEditWindow.Height = 500;
-                Application.Current?.OpenWindow(viewEditWindow);
-            }
+            //if (viewEditWindow == null)
+            //{
+            //    ViewEditPage viewEditPage = new ViewEditPage();
+            //    ViewEditPageVM viewEditPageVM = new ViewEditPageVM(selectedApp);
+
+            //    viewEditPageVM.AppChanged += OnAppChanged;
+            //    viewEditPage.BindingContext = viewEditPageVM;
+
+            //    viewEditWindow = new Window(viewEditPage);
+            //    viewEditWindow.Destroying += (s, e) =>
+            //    {
+            //        viewEditWindow = null;
+            //    };
+            //    viewEditWindow.Width = 500;
+            //    viewEditWindow.Height = 500;
+            //    Application.Current?.OpenWindow(viewEditWindow);
+            //}
         }
 
 
@@ -137,7 +145,14 @@ namespace Client.ViewModels
             }
         }
 
-        private void OnNewAppCreated(MyApp newApp) => Apps?.Add(newApp);
+        public void SetParameter(object parameter)
+        {
+            if (parameter is User user)
+            {
+                loginedUser = user;
+                OnPropertyChanged("UserInfo");
+            }
+        }
 
         private void OnAppChanged(MyApp changedApp)
         {
@@ -149,6 +164,8 @@ namespace Client.ViewModels
                 tmp.UserPassword = changedApp.UserPassword;
             }
         }
+
+        public void OnNewAppCreated(MyApp newApp) => Apps?.Add(newApp);
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
                                       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

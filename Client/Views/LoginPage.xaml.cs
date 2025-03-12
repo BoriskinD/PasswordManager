@@ -5,12 +5,14 @@ namespace Client.Views;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+    private LoginPageVM _loginPageVM;
+
+	public LoginPage(LoginPageVM loginPageVM)
 	{
 		InitializeComponent();
 
-        LoginPageVM loginPageVM = new LoginPageVM(new NavigationService());
-        loginPageVM.CloseCurrentWindow += LoginPageVM_CloseCurrentWindow;
+        _loginPageVM = loginPageVM;
+        _loginPageVM.CloseCurrentWindow += LoginPageVM_CloseCurrentWindow;
 
         BindingContext = loginPageVM;
 
@@ -22,6 +24,7 @@ public partial class LoginPage : ContentPage
 
     private void LoginPageVM_CloseCurrentWindow()
     {
+        _loginPageVM.CloseCurrentWindow -= LoginPageVM_CloseCurrentWindow;
         Application.Current?.CloseWindow(Window);
     }
 
