@@ -1,27 +1,18 @@
+using Client.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace Client;
 
 public partial class ViewEditPage : ContentPage
 {
-	public ViewEditPage()
+	public ViewEditPage(ViewEditPageVM viewEditPageVM)
 	{
 		InitializeComponent();
-        WeakReferenceMessenger.Default.Register<Message,int>(this, 2, (r, m) => 
-        { 
-            OnMessageReceived(m); 
-        });
-    }
+        BindingContext = viewEditPageVM;
 
-    private async void OnMessageReceived(Message message)
-    {
-        if (message.IsSuccess)
+        WeakReferenceMessenger.Default.Register<Message<string>,int>(this, (int)MessengerTokens.Tokens.ViewEditPage, (recipient, message) => 
         {
-            await DisplayAlert("Успех", message.Value, "ОК");
-        }
-        else
-        {
-            await DisplayAlert("Ошибка", message.Value, "ОК");
-        }
+            DisplayAlert("Инфо", message.Value, "ОК");
+        });
     }
 }

@@ -11,21 +11,21 @@ public partial class AddPage : ContentPage
 
 		BindingContext = addPageVM;
 
-		WeakReferenceMessenger.Default.Register<Message,int>(this, 1, (r, m) => 
-		{ 
-			OnMessageReceived(m); 
-		});
+		WeakReferenceMessenger.Default.Register<Message<string>,int>(this, (int)MessengerTokens.Tokens.AddPage, (recipient, message) => 
+		{
+            DisplayAlert("Инфо", message.Value, "Ок");
+        });
     }
 
-	private async void OnMessageReceived(Message message)
-	{
-		if (message.IsSuccess)
-		{
-			await DisplayAlert("Успех", message.Value, "ОК");
-		}
-		else
-		{
-            await DisplayAlert("Ошибка", message.Value, "ОК");
-        }
-    }
+	//private async void OnMessageReceived(Message message)
+	//{
+	//	if (message.IsSuccess)
+	//	{
+	//		await DisplayAlert("Успех", message.Value, "ОК");
+	//	}
+	//	else
+	//	{
+ //           await DisplayAlert("Ошибка", message.Value, "ОК");
+ //       }
+ //   }
 }

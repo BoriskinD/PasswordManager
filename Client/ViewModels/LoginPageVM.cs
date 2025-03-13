@@ -39,7 +39,7 @@ namespace Client.ViewModels
         {
             if (string.IsNullOrEmpty(UserLogin) || string.IsNullOrEmpty(UserPassword))
             {
-                WeakReferenceMessenger.Default.Send(new Message("Не все поля заполнены!"), 3);
+                WeakReferenceMessenger.Default.Send(new Message<string>("Не все поля заполнены!"), (int)MessengerTokens.Tokens.LoginPage);
                 return;
             }
 
@@ -62,19 +62,19 @@ namespace Client.ViewModels
 
                     await SecureStorage.SetAsync("AccsessToken", loginResponse.Token);
 
-                    _navigationService.OpenWindow<MainPage>(user, window =>
+                    _navigationService.OpenWindow<MainPage>(window =>
                     {
                         window.Title = "PWDManager";
                         window.Height = 700;
                         window.Width = 600;
-                    });
+                    }, user);
 
                     CloseCurrentWindow?.Invoke();
                 }
                 else
                 {
                     string responseContent = await response.Content.ReadAsStringAsync();
-                    WeakReferenceMessenger.Default.Send(new Message($"Не удалось войти. {responseContent}"), 3);
+                    WeakReferenceMessenger.Default.Send(new Message<string>($"Не удалось войти. {responseContent}"), (int)MessengerTokens.Tokens.LoginPage);
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace Client.ViewModels
         {
             if (string.IsNullOrEmpty(userLogin) || string.IsNullOrEmpty(userPassword))
             {
-                WeakReferenceMessenger.Default.Send(new Message("Не все поля заполнены!"), 3);
+                WeakReferenceMessenger.Default.Send(new Message<string>("Не все поля заполнены!"), (int)MessengerTokens.Tokens.LoginPage);
                 return;
             }
 
@@ -98,11 +98,11 @@ namespace Client.ViewModels
                 string responseContent = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    WeakReferenceMessenger.Default.Send(new Message(responseContent), 3);
+                    WeakReferenceMessenger.Default.Send(new Message<string>(responseContent), (int)MessengerTokens.Tokens.LoginPage);
                 }
                 else
                 {
-                    WeakReferenceMessenger.Default.Send(new Message($"Не далось зарегистрироваться. {responseContent}"), 3);
+                    WeakReferenceMessenger.Default.Send(new Message<string>($"Не далось зарегистрироваться. {responseContent}"), (int)MessengerTokens.Tokens.LoginPage);
                 }
             }
         }

@@ -7,15 +7,13 @@ using System.Windows.Input;
 
 namespace Client.ViewModels
 {
-    public class ViewEditPageVM : INotifyPropertyChanged
+    public class ViewEditPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         private HttpWrapper httpWrapper;
         private int selectedAppId;
         private string? title, userLogin, userPassword, imagePath;
         private bool isEditAllowed, isTitleEnabled, isUserLoginEnabled, isUserPasswordEnabled;
 
-        public delegate void NewAppCreatedHandler(MyApp changedApp);
-        public event NewAppCreatedHandler? AppChanged;
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand SaveChangesCommand { get; }
 
@@ -113,7 +111,7 @@ namespace Client.ViewModels
             }
         }
 
-        public ViewEditPageVM(MyApp selectedApp)
+        public ViewEditPageVM()
         {
             httpWrapper = HttpWrapper.GetInstance();
             SaveChangesCommand = new RelayCommand(SaveChanges);
@@ -121,15 +119,6 @@ namespace Client.ViewModels
             IsUserLoginEnabled = false;
             IsUserPasswordEnabled = false;
             IsEditAllowed = false;
-
-            selectedAppId = selectedApp == null ? 0 : selectedApp.Id;
-
-            #pragma warning disable CS8601 // Possible null reference assignment.
-            Title = selectedApp?.Title;
-            UserLogin = selectedApp?.UserLogin;
-            UserPassword = selectedApp?.UserPassword;
-            ImagePath = selectedApp?.ImagePath;
-            #pragma warning restore CS8601 // Possible null reference assignment.
         }
 
         private async void SaveChanges()
@@ -147,19 +136,29 @@ namespace Client.ViewModels
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    //СВЯЗАНО С ViewEditPage.xaml.cs
-                    WeakReferenceMessenger.Default.Send(new Message("Данные изменены", true), 2);
-                    AppChanged?.Invoke(changedApp);
+                    WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, this), (int)MessengerTokens.Tokens.MainPageVM);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
                 else
                 {
-                    WeakReferenceMessenger.Default.Send(new Message("Не удалось изменить данные"), 2);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось изменить данные"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
             }  
         }
 
+        public void SetParameter(object parameter)
+        {
+            if (parameter is MyApp myApp)
+            { 
+                selectedAppId = myApp.Id;
+                Title = myApp.Title;
+                UserLogin = myApp.UserLogin;
+                UserPassword = myApp.UserPassword;
+                ImagePath = myApp.ImagePath;
+            }
+        }
+
         private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
                                       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     }
 }

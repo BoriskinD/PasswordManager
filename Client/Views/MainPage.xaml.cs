@@ -16,9 +16,9 @@ namespace Client
             _mainPageVM.CloseCurrentWindow += MainPageVM_CloseCurrentWindow;
             BindingContext = mainPageVM;
     
-            WeakReferenceMessenger.Default.Register<Message,int>(this, 0, (r, m) => 
-            { 
-                OnMessageReceived(m); 
+            WeakReferenceMessenger.Default.Register<Message<string>,int>(this, (int)MessengerTokens.Tokens.MainPage, (recipient, message) => 
+            {
+                DisplayAlert("Инфо", message.Value, "ОК");
             });
         }
 
@@ -30,14 +30,7 @@ namespace Client
 
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyApp? selectedApp = e.CurrentSelection.FirstOrDefault() as MyApp;
-            //Передаёт данные в MainPageVM
-            WeakReferenceMessenger.Default.Send(new DataToPass(selectedApp));
-        }
-
-        private async void OnMessageReceived(Message message)
-        {
-            await DisplayAlert("Инфо", message.Value, "ОК");
+            _mainPageVM.SelectedApp = e.CurrentSelection.FirstOrDefault() as MyApp;
         }
     }
 }

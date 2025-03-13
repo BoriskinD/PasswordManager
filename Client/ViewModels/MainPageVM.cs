@@ -10,19 +10,19 @@ namespace Client.ViewModels
 {
     public class MainPageVM : INotifyPropertyChanged, IParameterReceiver
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public MyApp SelectedApp { get; set; }
         public ObservableCollection<MyApp> Apps { get; }
         public ICommand OpenAddPageCommand { get; }
         public ICommand DeleteItemCommand { get; }
         public ICommand OpenViewEditPageCommand { get; }
         public ICommand DownloadDataFromDBCommand { get; }
-        public event Action CloseCurrentWindow;
 
-        private MyApp? selectedApp;
+        public event Action CloseCurrentWindow;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        //Залогиненный пользователь
         private User? loginedUser;
         public string UserInfo
         { 
@@ -34,85 +34,47 @@ namespace Client.ViewModels
             httpWrapper = HttpWrapper.GetInstance();
             Apps = new ObservableCollection<MyApp>();
             OpenAddPageCommand = new RelayCommand(OpenAddPage);
-            DeleteItemCommand = new RelayCommand(DeleteItem);
+            DeleteItemCommand = new RelayCommand(DeleteSelectedItem);
             OpenViewEditPageCommand = new RelayCommand(OpenViewEditPage);
-            DownloadDataFromDBCommand = new RelayCommand(DownloadDataFromDataBase);
+            DownloadDataFromDBCommand = new RelayCommand(DownloadItemsFromDB);
             _navigationService = navigationService;
-            selectedApp = null;
 
-            WeakReferenceMessenger.Default.Register<DataToPass>(this, (r, m) => 
+            WeakReferenceMessenger.Default.Register<Message<MyApp>, int>(this, (int)MessengerTokens.Tokens.MainPageVM, (recipient, message) => 
             {
-                //if (r is AddPageVM)
-                //{
-                //    OnNewAppCreated(m.MyApp);
-                //}
-                selectedApp = m.MyApp; 
+                //Данные пришли из окна редактирования сервиса
+                if (message.Sender is ViewEditPageVM)
+                {
+                    OnAppChanged(message.Value);
+                    return;
+                }
+
+                //Данные пришли из окна добавления сервиса
+                Apps?.Add(message.Value);
             });
         }
 
         private void OpenAddPage()
         {
-            //if (addWindow == null)
-            //{
-            //AddPage addPage = new AddPage();
-            _navigationService.OpenWindow<AddPage>(loginedUser.Id, window =>
+            _navigationService.OpenWindow<AddPage>(window =>
             {
                 window.Width = 500;
                 window.Height = 500;
-            });
-
-            //AddPageVM addPageVM = new AddPageVM(_user);
-
-            //addPageVM.NewAppCreated += OnNewAppCreated;
-
-            //addPage.BindingContext = addPageVM;
-
-            //addWindow = new Window(addPage);
-            //addWindow.Destroying += (s, e) => 
-            //{ 
-            //    addPageVM.NewAppCreated -= OnNewAppCreated;
-            //    addWindow = null;
-            //};
-            //addWindow.Width = 500;
-            //addWindow.Height = 500;
-
-            //Application.Current?.OpenWindow(addWindow);
-            //}
+            }, loginedUser.Id);
         }
 
         private void OpenViewEditPage()
         {
-            //_navigationService.OpenWindow<LoginPage>(window =>
-            //{
-            //    window.Width = 500;
-            //    window.Height = 500;
-            //});
-
-            CloseCurrentWindow?.Invoke();
-
-            //if (viewEditWindow == null)
-            //{
-            //    ViewEditPage viewEditPage = new ViewEditPage();
-            //    ViewEditPageVM viewEditPageVM = new ViewEditPageVM(selectedApp);
-
-            //    viewEditPageVM.AppChanged += OnAppChanged;
-            //    viewEditPage.BindingContext = viewEditPageVM;
-
-            //    viewEditWindow = new Window(viewEditPage);
-            //    viewEditWindow.Destroying += (s, e) =>
-            //    {
-            //        viewEditWindow = null;
-            //    };
-            //    viewEditWindow.Width = 500;
-            //    viewEditWindow.Height = 500;
-            //    Application.Current?.OpenWindow(viewEditWindow);
-            //}
+            _navigationService.OpenWindow<ViewEditPage>(window =>
+            {
+                window.Width = 500;
+                window.Height = 500;
+            }, SelectedApp);
         }
 
 
-        private async void DeleteItem()
+        private async void DeleteSelectedItem()
         {
-            if (selectedApp == null)
+            if (SelectedApp == null)
             {
                 return;
             }
@@ -120,11 +82,11 @@ namespace Client.ViewModels
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-            await httpWrapper.Delete(selectedApp.Id);
-            Apps.Remove(selectedApp);
+            await httpWrapper.Delete(SelectedApp.Id);
+            Apps.Remove(SelectedApp);
         }
 
-        private async void DownloadDataFromDataBase()
+        private async void DownloadItemsFromDB()
         {
             if (Apps.Count == 0)
             {
@@ -139,8 +101,7 @@ namespace Client.ViewModels
                 }
                 else
                 {
-                    //СВЯЗАНО С MainPage.xaml.cs
-                    WeakReferenceMessenger.Default.Send(new Message("В базе данных нет записей"), 0);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"), (int)MessengerTokens.Tokens.MainPage);
                 }
             }
         }
@@ -164,8 +125,6 @@ namespace Client.ViewModels
                 tmp.UserPassword = changedApp.UserPassword;
             }
         }
-
-        public void OnNewAppCreated(MyApp newApp) => Apps?.Add(newApp);
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
                                       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

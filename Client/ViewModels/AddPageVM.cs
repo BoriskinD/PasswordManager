@@ -13,8 +13,6 @@ namespace Client.ViewModels
         private string baseDirectory, imageFolder, pathToImage, selectedImage;
         private int _userId;
 
-        public delegate void NewAppCreatedHandler(MyApp newApp);
-        public event NewAppCreatedHandler? NewAppCreated;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public RelayCommand SaveCommand { get; }
@@ -93,19 +91,14 @@ namespace Client.ViewModels
                     string responseContent = await response.Content.ReadAsStringAsync();
                     newApp.Id = int.Parse(responseContent);
 
-                    //СВЯЗАНО С AddPage.xaml.cs
-                    WeakReferenceMessenger.Default.Send(new Message("Данные были успешно добавлены.", true), 1);
-
                     File.Copy(selectedImage, pathToImage, true);
 
-                    //Передача данных в MainPageVM
-                    //WeakReferenceMessenger.Default.Send(new DataToPass(newApp));
-
-                    //NewAppCreated?.Invoke(newApp);
+                    WeakReferenceMessenger.Default.Send(new Message<MyApp>(newApp), (int)MessengerTokens.Tokens.MainPageVM);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("Данные были успешно добавлены."), (int)MessengerTokens.Tokens.AddPage);
                 }
                 else
                 {
-                    WeakReferenceMessenger.Default.Send(new Message("Не удалось добавить данные."), 1);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось добавить данные."), (int)MessengerTokens.Tokens.AddPage);
                 }
             } 
         }
@@ -136,7 +129,7 @@ namespace Client.ViewModels
             }
             catch (Exception)
             {
-                WeakReferenceMessenger.Default.Send(new Message("Не удалось выбрать указанный файл.", false), 1);
+                WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."), (int)MessengerTokens.Tokens.AddPage);
             }
         }
 

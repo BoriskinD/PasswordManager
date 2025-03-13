@@ -29,6 +29,8 @@ namespace Client
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AddPage>();
             builder.Services.AddTransient<AddPageVM>();
+            builder.Services.AddTransient<ViewEditPage>();
+            builder.Services.AddTransient<ViewEditPageVM>();
 
             return builder.Build();
         }

@@ -3,19 +3,15 @@
 namespace Client
 {
     //Класс для обмена сообщениями между модулями программы via WeakReferenceMessenger
-    public class Message : ValueChangedMessage<string>
-    {
-        private bool isSuccess;
+    public class Message<T> 
+    {   
+        public T Value { get; set; }
+        public object Sender { get; set; }
 
-        public bool IsSuccess 
+        public Message(T value, object sender = null)
         {
-            get => isSuccess;
-            set => isSuccess = value;
-        }
-
-        public Message(string value, bool IsSuccess = false) : base(value)
-        {
-            this.IsSuccess = IsSuccess;
+            Value = value;
+            Sender = sender;
         }
     }
 }

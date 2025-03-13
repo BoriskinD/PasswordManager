@@ -10,7 +10,7 @@
             _serviceProvider = serviceProvider;
         }
 
-        public void OpenWindow<TPage>(object parameter, Action<Window> configureWindow) where TPage : Page
+        public void OpenWindow<TPage>(Action<Window> configureWindow, object parameter = null) where TPage : Page
         {
             //Создать страницу
             TPage page = _serviceProvider.GetRequiredService<TPage>();
