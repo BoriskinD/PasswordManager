@@ -16,16 +16,4 @@ public partial class AddPage : ContentPage
             DisplayAlert("Инфо", message.Value, "Ок");
         });
     }
-
-	//private async void OnMessageReceived(Message message)
-	//{
-	//	if (message.IsSuccess)
-	//	{
-	//		await DisplayAlert("Успех", message.Value, "ОК");
-	//	}
-	//	else
-	//	{
- //           await DisplayAlert("Ошибка", message.Value, "ОК");
- //       }
- //   }
 }

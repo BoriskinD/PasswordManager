@@ -88,21 +88,20 @@ namespace Client.ViewModels
 
         private async void DownloadItemsFromDB()
         {
-            if (Apps.Count == 0)
-            {
-                string? token = await SecureStorage.GetAsync($"AccsessToken");
-                httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            Apps.Clear();
 
-                List<MyApp>? listOfApps = await httpWrapper.Get();
-                if (listOfApps != null)
-                {
-                    foreach (MyApp item in listOfApps)
-                        Apps.Add(item);
-                }
-                else
-                {
-                    WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"), (int)MessengerTokens.Tokens.MainPage);
-                }
+            string? token = await SecureStorage.GetAsync($"AccsessToken");
+            httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            List<MyApp>? listOfApps = await httpWrapper.Get();
+            if (listOfApps != null)
+            {
+                foreach (MyApp item in listOfApps)
+                    Apps.Add(item);
+            }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"), (int)MessengerTokens.Tokens.MainPage);
             }
         }
 

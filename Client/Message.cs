@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging.Messages;
-
-namespace Client
+﻿namespace Client
 {
     //Класс для обмена сообщениями между модулями программы via WeakReferenceMessenger
     public class Message<T> 

@@ -12,7 +12,7 @@
 
         public void OpenWindow<TPage>(Action<Window> configureWindow, object parameter = null) where TPage : Page
         {
-            //Создать страницу
+            //Получить страницу из контейнера
             TPage page = _serviceProvider.GetRequiredService<TPage>();
 
             if (page.BindingContext is IParameterReceiver receiver && parameter != null)
