@@ -1,10 +1,10 @@
 ﻿using Client.Model;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace Client.ViewModels
 {
@@ -25,7 +25,7 @@ namespace Client.ViewModels
 
         private User? loginedUser;
         public string UserInfo
-        { 
+        {
             get => loginedUser?.Login;
         }
 
@@ -35,11 +35,11 @@ namespace Client.ViewModels
             Apps = new ObservableCollection<MyApp>();
             OpenAddPageCommand = new RelayCommand(OpenAddPage);
             DeleteItemCommand = new RelayCommand(DeleteSelectedItem);
-            OpenViewEditPageCommand = new RelayCommand(OpenViewEditPage);
+            OpenViewEditPageCommand = new RelayCommand<MyApp>(OpenViewEditPage);
             DownloadDataFromDBCommand = new RelayCommand(DownloadItemsFromDB);
             _navigationService = navigationService;
 
-            WeakReferenceMessenger.Default.Register<Message<MyApp>, int>(this, (int)MessengerTokens.Tokens.MainPageVM, (recipient, message) => 
+            WeakReferenceMessenger.Default.Register<Message<MyApp>, int>(this, (int)MessengerTokens.Tokens.MainPageVM, (recipient, message) =>
             {
                 //Данные пришли из окна редактирования сервиса
                 if (message.Sender is ViewEditPageVM)
@@ -62,13 +62,13 @@ namespace Client.ViewModels
             }, loginedUser.Id);
         }
 
-        private void OpenViewEditPage()
+        private void OpenViewEditPage(MyApp selectedApp)
         {
             _navigationService.OpenWindow<ViewEditPage>(window =>
             {
                 window.Width = 500;
                 window.Height = 500;
-            }, SelectedApp);
+            }, selectedApp);//SelectedApp);
         }
 
 
@@ -118,7 +118,7 @@ namespace Client.ViewModels
         {
             MyApp? tmp = Apps.FirstOrDefault(element => element.Id == changedApp.Id);
             if (tmp != null)
-            { 
+            {
                 tmp.Title = changedApp.Title;
                 tmp.UserLogin = changedApp.UserLogin;
                 tmp.UserPassword = changedApp.UserPassword;

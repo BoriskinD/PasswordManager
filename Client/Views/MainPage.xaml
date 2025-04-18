@@ -21,12 +21,13 @@
                 <DataTemplate>
                     <VerticalStackLayout HorizontalOptions="Center"
                                          VerticalOptions="Center">
-                        <Label Text="{Binding Title}" HorizontalOptions="Center"/>
-                        <ImageButton Source="{Binding ImagePath}" HorizontalOptions="Center"
-                                     VerticalOptions="Center" HeightRequest="340"
-                                     WidthRequest="600"
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-                                              Path=BindingContext.OpenViewEditPageCommand}"/>
+                        <!--<Label Text="{Binding Title}" HorizontalOptions="Center"/>-->
+                        <Button ImageSource="{Binding ImagePath}" HorizontalOptions="Center"
+                                Text ="{Binding .}" VerticalOptions="Center" 
+                                HeightRequest="340" WidthRequest="600"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                                          Path=BindingContext.OpenViewEditPageCommand}"
+                                CommandParameter="{Binding .}"/> <!--Передаём в качестве параметра выбранный объект в CollectionView-->
                     </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
