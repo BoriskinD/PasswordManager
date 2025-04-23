@@ -17,7 +17,7 @@ namespace Client.ViewModels
         public ICommand OpenViewEditPageCommand { get; }
         public ICommand DownloadDataFromDBCommand { get; }
 
-        public event Action CloseCurrentWindow;
+        public event Action CloseCurrentWindow; //Обработать это событие
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private HttpWrapper httpWrapper;
@@ -62,7 +62,7 @@ namespace Client.ViewModels
             }, loginedUser.Id);
         }
 
-        private void OpenViewEditPage(MyApp selectedApp)
+        public void OpenViewEditPage(MyApp selectedApp)
         {
             _navigationService.OpenWindow<ViewEditPage>(window =>
             {

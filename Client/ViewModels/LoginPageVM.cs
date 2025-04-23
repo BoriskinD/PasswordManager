@@ -66,7 +66,7 @@ namespace Client.ViewModels
                     {
                         window.Title = "PWDManager";
                         window.Height = 700;
-                        window.Width = 600;
+                        window.Width = 1600;
                     }, user);
 
                     CloseCurrentWindow?.Invoke();

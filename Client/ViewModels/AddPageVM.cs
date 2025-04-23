@@ -60,7 +60,7 @@ namespace Client.ViewModels
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory; 
             imageFolder = Path.Combine(baseDirectory, "Images");
 
-            ImagePath = "dotnet_bot.png";
+            ImagePath = "no_image_available.jpg";
             pathToImage = string.Empty;
             selectedImage = string.Empty;
 
@@ -106,8 +106,10 @@ namespace Client.ViewModels
         private async void SelectImage() 
         {
             if (!Directory.Exists(imageFolder))
+            {
                 Directory.CreateDirectory(imageFolder);
-
+            }
+                
             try
             {
                 PickOptions pickOptions = new PickOptions()

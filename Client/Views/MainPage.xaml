@@ -9,8 +9,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <CollectionView ItemsSource="{Binding Apps}" SelectionMode="Single"
-                        SelectionChanged="CollectionView_SelectionChanged">
+        <CollectionView x:Name="collectionView" Grid.Row="0"
+                        ItemsSource="{Binding Apps}" SelectionMode="Single">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal" Span="2"
@@ -19,30 +19,34 @@
             
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout HorizontalOptions="Center"
-                                         VerticalOptions="Center">
-                        <!--<Label Text="{Binding Title}" HorizontalOptions="Center"/>-->
-                        <Button ImageSource="{Binding ImagePath}" HorizontalOptions="Center"
-                                Text ="{Binding .}" VerticalOptions="Center" 
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSingleClick" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="OnDoubleClick" NumberOfTapsRequired="2"/>
+                        </Grid.GestureRecognizers>
+                        
+                        <Button InputTransparent="True"
+                                ImageSource="{Binding ImagePath}" BackgroundColor="Transparent"
+                                HorizontalOptions="Center" VerticalOptions="Center"
                                 HeightRequest="340" WidthRequest="600"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
                                           Path=BindingContext.OpenViewEditPageCommand}"
                                 CommandParameter="{Binding .}"/> <!--Передаём в качестве параметра выбранный объект в CollectionView-->
-                    </VerticalStackLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             
             <CollectionView.EmptyView>
                 <ContentView>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label Text="Нет данных для отображения!"
                                HorizontalOptions="Center" VerticalOptions="Center"
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                               FontAttributes="Bold" FontSize="12"/>
+                               FontAttributes="Bold" FontSize="40"/>
                         <Label Text="Нажмите кнопку 'Загрузить данные'."
                                HorizontalOptions="Center" VerticalOptions="Center"
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                               FontSize="10"/>
+                               FontSize="32"/>
                     </VerticalStackLayout>
                 </ContentView>
             </CollectionView.EmptyView>

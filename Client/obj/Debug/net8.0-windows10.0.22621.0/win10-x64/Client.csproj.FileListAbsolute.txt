@@ -318,11 +318,6 @@ F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\res
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png
-F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\mauiimage.stamp
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\mauiimage.outputs
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\Client.AssemblyInfoInputs.cache
@@ -352,3 +347,4 @@ F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\qua
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\qualifiers.txt.intermediate
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\ProjectArchitectures.txt
+F:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\resizetizer\r\no_image_available.scale-100.jpg
