@@ -20,18 +20,20 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnSingleClick" NumberOfTapsRequired="1"/>
-                            <TapGestureRecognizer Tapped="OnDoubleClick" NumberOfTapsRequired="2"/>
-                        </Grid.GestureRecognizers>
-                        
-                        <Button InputTransparent="True"
-                                ImageSource="{Binding ImagePath}" BackgroundColor="Transparent"
-                                HorizontalOptions="Center" VerticalOptions="Center"
-                                HeightRequest="340" WidthRequest="600"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-                                          Path=BindingContext.OpenViewEditPageCommand}"
-                                CommandParameter="{Binding .}"/> <!--Передаём в качестве параметра выбранный объект в CollectionView-->
+                        <Image Source="{Binding ImagePath}"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               HeightRequest="340" WidthRequest="600">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                                                      Path=BindingContext.SetSelectedItemCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                                <TapGestureRecognizer NumberOfTapsRequired="2"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                                                      Path=BindingContext.OpenViewEditPageCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

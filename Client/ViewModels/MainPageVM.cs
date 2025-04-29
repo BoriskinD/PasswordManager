@@ -12,6 +12,7 @@ namespace Client.ViewModels
     {
         public MyApp SelectedApp { get; set; }
         public ObservableCollection<MyApp> Apps { get; }
+        public ICommand SetSelectedItemCommand { get; }
         public ICommand OpenAddPageCommand { get; }
         public ICommand DeleteItemCommand { get; }
         public ICommand OpenViewEditPageCommand { get; }
@@ -35,6 +36,7 @@ namespace Client.ViewModels
             Apps = new ObservableCollection<MyApp>();
             OpenAddPageCommand = new RelayCommand(OpenAddPage);
             DeleteItemCommand = new RelayCommand(DeleteSelectedItem);
+            SetSelectedItemCommand = new RelayCommand<MyApp>(SetSelectedItem);
             OpenViewEditPageCommand = new RelayCommand<MyApp>(OpenViewEditPage);
             DownloadDataFromDBCommand = new RelayCommand(DownloadItemsFromDB);
             _navigationService = navigationService;
@@ -62,7 +64,12 @@ namespace Client.ViewModels
             }, loginedUser.Id);
         }
 
-        public void OpenViewEditPage(MyApp selectedApp)
+        private void SetSelectedItem(MyApp selectedApp)
+        {
+            SelectedApp = selectedApp;
+        }
+
+        private void OpenViewEditPage(MyApp selectedApp)
         {
             _navigationService.OpenWindow<ViewEditPage>(window =>
             {
