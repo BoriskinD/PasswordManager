@@ -1,4 +1,5 @@
 ﻿using Client.Model;
+using Client.Views;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
@@ -17,6 +18,7 @@ namespace Client.ViewModels
         public ICommand DeleteItemCommand { get; }
         public ICommand OpenViewEditPageCommand { get; }
         public ICommand DownloadDataFromDBCommand { get; }
+        public ICommand BackToLoginPageCommand { get; }
 
         public event Action CloseCurrentWindow; //Обработать это событие
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -39,6 +41,7 @@ namespace Client.ViewModels
             SetSelectedItemCommand = new RelayCommand<MyApp>(SetSelectedItem);
             OpenViewEditPageCommand = new RelayCommand<MyApp>(OpenViewEditPage);
             DownloadDataFromDBCommand = new RelayCommand(DownloadItemsFromDB);
+            BackToLoginPageCommand = new RelayCommand(BackToLoginPage);
             _navigationService = navigationService;
 
             WeakReferenceMessenger.Default.Register<Message<MyApp>, int>(this, (int)MessengerTokens.Tokens.MainPageVM, (recipient, message) =>
@@ -75,9 +78,8 @@ namespace Client.ViewModels
             {
                 window.Width = 500;
                 window.Height = 500;
-            }, selectedApp);//SelectedApp);
+            }, selectedApp);
         }
-
 
         private async void DeleteSelectedItem()
         {
@@ -89,7 +91,7 @@ namespace Client.ViewModels
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-            await httpWrapper.Delete(SelectedApp.Id);
+            await httpWrapper.Delete(SelectedApp.Id);    
             Apps.Remove(SelectedApp);
         }
 
@@ -110,6 +112,15 @@ namespace Client.ViewModels
             {
                 WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"), (int)MessengerTokens.Tokens.MainPage);
             }
+        }
+
+        private void BackToLoginPage()
+        {
+            _navigationService.OpenWindow<LoginPage>(window =>
+            { 
+                window.Height = 500;
+                window.Width = 500;
+            });
         }
 
         public void SetParameter(object parameter)

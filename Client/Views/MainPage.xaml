@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Client.MainPage">
-
+    
+    <!--Родительский Грид-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.12*"/>
         </Grid.RowDefinitions>
 
         <CollectionView x:Name="collectionView" Grid.Row="0"
@@ -55,26 +56,42 @@
             
         </CollectionView>
 
-        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End">
+        <!--Грид для навигации внизу экрана-->
+        <!--<Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>-->
 
-            <Entry Text="{Binding UserInfo}" Margin="0,10,20,10"
-                   FontSize="16" IsReadOnly="True"/>
-            
-            <Button Text="Загрузить данные" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Beige"
-                    Margin="0,10,10,10" HeightRequest="20"
-                    WidthRequest="250"
-                    Command="{Binding DownloadDataFromDBCommand}"/>
-            <Button Text="Добавить" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Beige"
-                    Margin="0,10,10,10"
-                    Command="{Binding OpenAddPageCommand}"/>
-            <Button Text="Удалить" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Aqua"
-                    Margin="0,10,10,10"
-                    Command="{Binding DeleteItemCommand}"/>
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Start">
+
+                <ImageButton Source="back_arrow.png" BackgroundColor="Transparent"
+                             Command="{Binding BackToLoginPageCommand}" HeightRequest="10"/>
+
+                <Entry Text="{Binding UserInfo}" HeightRequest="10"
+                       FontSize="14" IsReadOnly="True"/>
 
         </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End">
+
+                <Button Text="Загрузить данные" FontSize="22"
+                        BorderWidth="1" BackgroundColor="Beige"
+                        Margin="0,10,10,10" HeightRequest="20"
+                        WidthRequest="250"
+                        Command="{Binding DownloadDataFromDBCommand}"/>
+                <Button Text="Добавить" FontSize="22"
+                        BorderWidth="1" BackgroundColor="Beige"
+                        Margin="0,10,10,10"
+                        Command="{Binding OpenAddPageCommand}"/>
+                <Button Text="Удалить" FontSize="22"
+                        BorderWidth="1" BackgroundColor="Aqua"
+                        Margin="0,10,10,10"
+                        Command="{Binding DeleteItemCommand}"/>
+
+            </HorizontalStackLayout>
+
+        <!--</Grid>-->
     </Grid>
 
 </ContentPage>
