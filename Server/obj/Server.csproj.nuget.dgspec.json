@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Projects\\PWDManager\\Server\\Server.csproj": {}
+    "C:\\Projects\\PWDManager\\Server\\Server.csproj": {}
   },
   "projects": {
-    "F:\\Projects\\PWDManager\\Server\\Server.csproj": {
+    "C:\\Projects\\PWDManager\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Projects\\PWDManager\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Projects\\PWDManager\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "F:\\Projects\\PWDManager\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "F:\\Projects\\PWDManager\\Server\\obj\\",
+        "projectPath": "C:\\Projects\\PWDManager\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\Dmitriy\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\PWDManager\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dmitriy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,7 +44,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -88,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

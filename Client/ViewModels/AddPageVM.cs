@@ -120,13 +120,9 @@ namespace Client.ViewModels
                 FileResult? result = await FilePicker.Default.PickAsync(pickOptions);
                 if (result != null)
                 {
-                    if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-                        result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-                    {
-                        selectedImage = result.FullPath;
-                        pathToImage = Path.Combine(imageFolder, result.FileName);
-                        ImagePath = pathToImage;
-                    }
+                    selectedImage = result.FullPath;
+                    pathToImage = Path.Combine(imageFolder, result.FileName);
+                    ImagePath = pathToImage;
                 }
             }
             catch (Exception)
