@@ -20,7 +20,6 @@ namespace Client.ViewModels
         public ICommand DownloadDataFromDBCommand { get; }
         public ICommand BackToLoginPageCommand { get; }
 
-        public event Action CloseCurrentWindow; //Обработать это событие
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private HttpWrapper httpWrapper;
@@ -105,8 +104,8 @@ namespace Client.ViewModels
             List<MyApp>? listOfApps = await httpWrapper.Get();
             if (listOfApps != null)
             {
-                foreach (MyApp item in listOfApps)
-                    Apps.Add(item);
+                foreach(MyApp item in listOfApps)
+                        Apps.Add(item);
             }
             else
             {
@@ -121,6 +120,8 @@ namespace Client.ViewModels
                 window.Height = 500;
                 window.Width = 500;
             });
+
+            WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.MainPage);
         }
 
         public void SetParameter(object parameter)

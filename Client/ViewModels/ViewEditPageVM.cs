@@ -136,7 +136,7 @@ namespace Client.ViewModels
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, this), (int)MessengerTokens.Tokens.MainPageVM);
+                    WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, false, this), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
                 else

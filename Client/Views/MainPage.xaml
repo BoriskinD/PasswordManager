@@ -65,11 +65,11 @@
 
             <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Start">
 
-                <ImageButton Source="back_arrow.png" BackgroundColor="Transparent"
-                             Command="{Binding BackToLoginPageCommand}" HeightRequest="10"/>
+                <Button Text="{Binding UserInfo}" HeightRequest="10"
+                        Command="{Binding BackToLoginPageCommand}"/>
 
-                <Entry Text="{Binding UserInfo}" HeightRequest="10"
-                       FontSize="14" IsReadOnly="True"/>
+                <!--<Entry Text="{Binding UserInfo}" HeightRequest="10"
+                       FontSize="14" IsReadOnly="True"/>-->
 
         </HorizontalStackLayout>
 

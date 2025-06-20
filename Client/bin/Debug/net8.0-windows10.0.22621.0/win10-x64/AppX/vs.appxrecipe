@@ -31,7 +31,7 @@
     <AppXManifest Include="C:\Projects\PWDManager\Client\bin\Debug\net8.0-windows10.0.22621.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-06-13T11:21:07.397</Modified>
+      <Modified>2025-06-20T09:30:15.433</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -45,11 +45,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Projects\PWDManager\Client\bin\Debug\net8.0-windows10.0.22621.0\win10-x64\Client.dll">
       <PackagePath>Client.dll</PackagePath>
-      <Modified>2025-06-13T11:21:07.200</Modified>
+      <Modified>2025-06-20T09:30:15.233</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Projects\PWDManager\Client\obj\Debug\net8.0-windows10.0.22621.0\win10-x64\apphost.exe">
       <PackagePath>Client.exe</PackagePath>
-      <Modified>2025-06-13T11:21:07.208</Modified>
+      <Modified>2025-06-20T09:30:15.240</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Projects\PWDManager\Client\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>

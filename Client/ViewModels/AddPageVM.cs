@@ -91,8 +91,11 @@ namespace Client.ViewModels
                     string responseContent = await response.Content.ReadAsStringAsync();
                     newApp.Id = int.Parse(responseContent);
 
-                    File.Copy(selectedImage, pathToImage, true);
-
+                    if (!string.IsNullOrEmpty(selectedImage))
+                    {
+                        File.Copy(selectedImage, pathToImage, true);
+                    }
+                    
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(newApp), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные были успешно добавлены."), (int)MessengerTokens.Tokens.AddPage);
                 }

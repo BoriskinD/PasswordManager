@@ -11,7 +11,6 @@ namespace Client.ViewModels
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        public event Action CloseCurrentWindow;
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
 
@@ -69,7 +68,8 @@ namespace Client.ViewModels
                         window.Width = 1600;
                     }, user);
 
-                    CloseCurrentWindow?.Invoke();
+                    //Закрыть окно авторизации
+                    WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.LoginPage);
                 }
                 else
                 {
