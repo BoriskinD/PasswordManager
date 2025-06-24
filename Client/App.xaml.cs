@@ -10,5 +10,14 @@ namespace Client
             InitializeComponent();
             MainPage = loginPage;
         }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            Window window = base.CreateWindow(activationState);
+            window.Height = 500;
+            window.Width = 500;
+
+            return window;
+        }
     }
 }

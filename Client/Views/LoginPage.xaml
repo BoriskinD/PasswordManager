@@ -8,20 +8,20 @@
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
                Margin="5" Text="{Binding UserLogin}"/>
-        
+
         <Entry Placeholder="Пароль"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
                Margin="5" Text="{Binding UserPassword}"/>
-        
+
         <Button Text="Войти"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Command="{Binding LoginCommand}"/>
-        
+
         <Button Text="Зарегистрироваться"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Command ="{Binding RegisterCommand}"/>
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Command ="{Binding RegisterCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
