@@ -17,13 +17,13 @@
                 <GridItemsLayout Orientation="Horizontal" Span="2"
                                  HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
             </CollectionView.ItemsLayout>
-            
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="{Binding ImagePath}"
+                        <Image Source="{Binding ImagePath}" Margin="15" Aspect="AspectFill"
                                HorizontalOptions="Center" VerticalOptions="Center"
-                               HeightRequest="340" WidthRequest="600">
+                               HeightRequest="400" WidthRequest="400">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
@@ -38,7 +38,7 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
+
             <CollectionView.EmptyView>
                 <ContentView>
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
@@ -53,45 +53,33 @@
                     </VerticalStackLayout>
                 </ContentView>
             </CollectionView.EmptyView>
-            
+
         </CollectionView>
 
-        <!--Грид для навигации внизу экрана-->
-        <!--<Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>-->
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Start">
 
-            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Start">
-
-                <Button Text="{Binding UserInfo}" HeightRequest="10"
-                        Command="{Binding BackToLoginPageCommand}"/>
-
-                <!--<Entry Text="{Binding UserInfo}" HeightRequest="10"
-                       FontSize="14" IsReadOnly="True"/>-->
-
+            <Button Text="{Binding UserInfo}" HeightRequest="10"
+                    Margin="10,0,0,0" Command="{Binding BackToLoginPageCommand}"/>
         </HorizontalStackLayout>
 
-            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End">
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End">
 
-                <Button Text="Загрузить данные" FontSize="22"
-                        BorderWidth="1" BackgroundColor="Beige"
-                        Margin="0,10,10,10" HeightRequest="20"
-                        WidthRequest="250"
-                        Command="{Binding DownloadDataFromDBCommand}"/>
-                <Button Text="Добавить" FontSize="22"
-                        BorderWidth="1" BackgroundColor="Beige"
-                        Margin="0,10,10,10"
-                        Command="{Binding OpenAddPageCommand}"/>
-                <Button Text="Удалить" FontSize="22"
-                        BorderWidth="1" BackgroundColor="Aqua"
-                        Margin="0,10,10,10"
-                        Command="{Binding DeleteItemCommand}"/>
-
-            </HorizontalStackLayout>
-
-        <!--</Grid>-->
+            <Button Text="Загрузить данные" FontSize="22"
+                    BorderWidth="1" BackgroundColor="Beige"
+                    Margin="0,10,10,10" HeightRequest="20"
+                    WidthRequest="250"
+                    Command="{Binding DownloadDataFromDBCommand}"/>
+            
+            <Button Text="Добавить" FontSize="22"
+                    BorderWidth="1" BackgroundColor="Beige"
+                    Margin="0,10,10,10"
+                    Command="{Binding OpenAddPageCommand}"/>
+            
+            <Button Text="Удалить" FontSize="22"
+                    BorderWidth="1" BackgroundColor="Aqua"
+                    Margin="0,10,10,10"
+                    Command="{Binding DeleteItemCommand}"/>
+        </HorizontalStackLayout>
     </Grid>
 
 </ContentPage>

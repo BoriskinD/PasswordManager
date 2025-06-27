@@ -1,6 +1,7 @@
 ﻿using Client.ViewModels;
 using Client.Views;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Client
 {
@@ -21,6 +22,7 @@ namespace Client
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //builder.UseSkiaSharp();
             //Регистрация сервисов в DI контейнер
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddTransient<LoginPageVM>();

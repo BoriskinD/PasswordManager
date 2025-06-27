@@ -14,8 +14,9 @@ namespace Client
         protected override Window CreateWindow(IActivationState? activationState)
         {
             Window window = base.CreateWindow(activationState);
-            window.Height = 500;
-            window.Width = 500;
+            window.Title = "PWDManager";
+            window.Height = 200;
+            window.Width = 450;
 
             return window;
         }

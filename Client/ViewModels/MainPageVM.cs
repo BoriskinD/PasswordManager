@@ -117,8 +117,9 @@ namespace Client.ViewModels
         {
             _navigationService.OpenWindow<LoginPage>(window =>
             { 
-                window.Height = 500;
-                window.Width = 500;
+                window.Title = "PWDManager";
+                window.Height = 200;
+                window.Width = 450;
             });
 
             WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.MainPage);

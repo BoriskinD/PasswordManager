@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui"
              x:Class="Client.Views.LoginPage"
              Title="LoginPage">
     <VerticalStackLayout>
-        <Entry Placeholder="Логин"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               Margin="5" Text="{Binding UserLogin}"/>
 
-        <Entry Placeholder="Пароль"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               Margin="5" Text="{Binding UserPassword}"/>
+        <!--<skia:SKCanvasView PaintSurface="OnCanvasViewPaintSurface" />-->
 
-        <Button Text="Войти"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Command="{Binding LoginCommand}"/>
+        <Entry Placeholder="Логин" Margin="5"
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+               Text="{Binding UserLogin}"/>
 
-        <Button Text="Зарегистрироваться"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Command ="{Binding RegisterCommand}"/>
+        <Entry Placeholder="Пароль" Margin="5"
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+               Text="{Binding UserPassword}"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Text ="Войти"
+                    HorizontalOptions="End" VerticalOptions="Center"
+                    Margin="0,0,10,0" WidthRequest="175"
+                    Command="{Binding LoginCommand}"/>
+
+            <Button Grid.Column="1" Text="Зарегистрироваться"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    WidthRequest="175"
+                    Command ="{Binding RegisterCommand}"/>
+        </Grid>
+
     </VerticalStackLayout>
 </ContentPage>
