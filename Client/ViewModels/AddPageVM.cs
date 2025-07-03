@@ -9,6 +9,7 @@ namespace Client.ViewModels
     public class AddPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         private HttpWrapper httpWrapper;
+        private Image image;
         private string? title, userLogin, userPassword, imagePath;
         private string baseDirectory, imageFolder, pathToImage, selectedImage;
         private int _userId;
@@ -67,6 +68,7 @@ namespace Client.ViewModels
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
             SelectImageCommand = new RelayCommand(SelectImage);
+            image = new Image();
         }
 
         private async void Save()
@@ -95,7 +97,7 @@ namespace Client.ViewModels
                     {
                         File.Copy(selectedImage, pathToImage, true);
                     }
-                    
+
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(newApp), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные были успешно добавлены."), (int)MessengerTokens.Tokens.AddPage);
                 }
@@ -124,8 +126,9 @@ namespace Client.ViewModels
                 if (result != null)
                 {
                     selectedImage = result.FullPath;
+                    ImagePath = image.ResizeImage(selectedImage, 400, 400);
                     pathToImage = Path.Combine(imageFolder, result.FileName);
-                    ImagePath = pathToImage;
+                    //ImagePath = pathToImage;
                 }
             }
             catch (Exception)
