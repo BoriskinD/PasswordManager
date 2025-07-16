@@ -104,8 +104,10 @@ namespace Client.ViewModels
             List<MyApp>? listOfApps = await httpWrapper.Get();
             if (listOfApps != null)
             {
-                foreach(MyApp item in listOfApps)
-                        Apps.Add(item);
+                foreach (MyApp item in listOfApps)
+                {
+                    Apps.Add(item);
+                }
             }
             else
             {

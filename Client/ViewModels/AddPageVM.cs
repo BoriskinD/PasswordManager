@@ -79,7 +79,7 @@ namespace Client.ViewModels
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
-                ImagePath = ImagePath
+                ImagePath = string.IsNullOrEmpty(pathToImage) ? ImagePath : pathToImage 
             };
 
             string? token = await SecureStorage.GetAsync($"AccsessToken");
@@ -126,7 +126,7 @@ namespace Client.ViewModels
                 if (result != null)
                 {
                     selectedImage = result.FullPath;
-                    ImagePath = image.ResizeImage(selectedImage, 400, 400);
+                    ImagePath = image.ResizeImage(selectedImage, 300, 300);
                     pathToImage = Path.Combine(imageFolder, result.FileName);
                     //ImagePath = pathToImage;
                 }

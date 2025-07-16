@@ -64,8 +64,8 @@ namespace Client.ViewModels
                     _navigationService.OpenWindow<MainPage>(window =>
                     {
                         window.Title = "PWDManager";
-                        window.Height = 700;
-                        window.Width = 1600;
+                        window.Height = 800;
+                        window.Width = 1300;
                     }, user);
 
                     //Закрыть окно авторизации
