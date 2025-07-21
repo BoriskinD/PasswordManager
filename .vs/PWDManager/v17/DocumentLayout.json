@@ -7,24 +7,8 @@
       "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\loginpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\viewmodels\\addpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\addpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\views\\addpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\addpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,45 +18,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginPageVM.cs",
-              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
-              "RelativeDocumentMoniker": "Client\\ViewModels\\LoginPageVM.cs",
-              "ToolTip": "C:\\Projects\\PWDManager\\Client\\ViewModels\\LoginPageVM.cs",
-              "RelativeToolTip": "Client\\ViewModels\\LoginPageVM.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAmwEMAAAApAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "Client\\MauiProgram.cs",
+              "ToolTip": "C:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
+              "RelativeToolTip": "Client\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T10:27:25.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddPageVM.cs",
-              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\ViewModels\\AddPageVM.cs",
-              "RelativeDocumentMoniker": "Client\\ViewModels\\AddPageVM.cs",
-              "ToolTip": "C:\\Projects\\PWDManager\\Client\\ViewModels\\AddPageVM.cs",
-              "RelativeToolTip": "Client\\ViewModels\\AddPageVM.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAIAwwHwAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T10:27:13.893Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Image.cs",
-              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\Image.cs",
-              "RelativeDocumentMoniker": "Client\\Image.cs",
-              "ToolTip": "C:\\Projects\\PWDManager\\Client\\Image.cs",
-              "RelativeToolTip": "Client\\Image.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T10:27:05.78Z",
+              "WhenOpened": "2025-07-21T10:39:24.495Z",
               "EditorCaption": ""
             },
             {
@@ -83,35 +41,9 @@
               "RelativeDocumentMoniker": "Client\\Views\\MainPage.xaml",
               "ToolTip": "C:\\Projects\\PWDManager\\Client\\Views\\MainPage.xaml",
               "RelativeToolTip": "Client\\Views\\MainPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABMAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-16T09:49:29.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainPageVM.cs",
-              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
-              "RelativeDocumentMoniker": "Client\\ViewModels\\MainPageVM.cs",
-              "ToolTip": "C:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
-              "RelativeToolTip": "Client\\ViewModels\\MainPageVM.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAIwGwAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T09:49:23.861Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AddPage.xaml",
-              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\Views\\AddPage.xaml",
-              "RelativeDocumentMoniker": "Client\\Views\\AddPage.xaml",
-              "ToolTip": "C:\\Projects\\PWDManager\\Client\\Views\\AddPage.xaml",
-              "RelativeToolTip": "Client\\Views\\AddPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-03T10:21:57.313Z",
+              "WhenOpened": "2025-07-21T09:43:36.481Z",
               "EditorCaption": ""
             }
           ]

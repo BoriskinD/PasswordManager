@@ -2,6 +2,41 @@
   "version": 3,
   "targets": {
     "net9.0-windows10.0.22621": {
+      "CommunityToolkit.Maui/12.1.0": {
+        "type": "package",
+        "dependencies": {
+          "CommunityToolkit.Maui.Core": "12.1.0",
+          "Microsoft.Maui.Controls": "[9.0.80, 10.0.0)"
+        },
+        "compile": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "CommunityToolkit.Maui.Core/12.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Maui.Core": "[9.0.80, 10.0.0)",
+          "Microsoft.Maui.Essentials": "[9.0.80, 10.0.0)",
+          "System.Speech": "9.0.5"
+        },
+        "compile": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "CommunityToolkit.Mvvm/8.2.2": {
         "type": "package",
         "compile": {
@@ -878,9 +913,66 @@
             "related": ".pdb"
           }
         }
+      },
+      "System.Speech/9.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/System.Speech.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/System.Speech.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net9.0/System.Speech.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
       }
     },
     "net9.0-windows10.0.22621/win10-x64": {
+      "CommunityToolkit.Maui/12.1.0": {
+        "type": "package",
+        "dependencies": {
+          "CommunityToolkit.Maui.Core": "12.1.0",
+          "Microsoft.Maui.Controls": "[9.0.80, 10.0.0)"
+        },
+        "compile": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "CommunityToolkit.Maui.Core/12.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Maui.Core": "[9.0.80, 10.0.0)",
+          "Microsoft.Maui.Essentials": "[9.0.80, 10.0.0)",
+          "System.Speech": "9.0.5"
+        },
+        "compile": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "CommunityToolkit.Mvvm/8.2.2": {
         "type": "package",
         "compile": {
@@ -1638,10 +1730,79 @@
             "related": ".pdb"
           }
         }
+      },
+      "System.Speech/9.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/System.Speech.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "runtimes/win/lib/net9.0/System.Speech.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
       }
     }
   },
   "libraries": {
+    "CommunityToolkit.Maui/12.1.0": {
+      "sha512": "aFHT0CYO/Op4Nyd9w8TWkaVixFWRiBxlC5VMxly2OL1hN1+2PrEWak8GIQ4zdJeBTPUGIYpKHBEoSLYwmGqUng==",
+      "type": "package",
+      "path": "communitytoolkit.maui/12.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ReadMe.txt",
+        "analyzers/dotnet/cs/CommunityToolkit.Maui.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/cs/CommunityToolkit.Maui.Analyzers.dll",
+        "analyzers/dotnet/cs/CommunityToolkit.Maui.SourceGenerators.dll",
+        "communitytoolkit.maui.12.1.0.nupkg.sha512",
+        "communitytoolkit.maui.nuspec",
+        "icon.png",
+        "lib/net9.0-android35.0/CommunityToolkit.Maui.dll",
+        "lib/net9.0-android35.0/CommunityToolkit.Maui.xml",
+        "lib/net9.0-ios18.0/CommunityToolkit.Maui.dll",
+        "lib/net9.0-ios18.0/CommunityToolkit.Maui.xml",
+        "lib/net9.0-maccatalyst18.0/CommunityToolkit.Maui.dll",
+        "lib/net9.0-maccatalyst18.0/CommunityToolkit.Maui.xml",
+        "lib/net9.0-tizen10.0/CommunityToolkit.Maui.dll",
+        "lib/net9.0-tizen10.0/CommunityToolkit.Maui.xml",
+        "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll",
+        "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.xml",
+        "lib/net9.0/CommunityToolkit.Maui.dll",
+        "lib/net9.0/CommunityToolkit.Maui.xml"
+      ]
+    },
+    "CommunityToolkit.Maui.Core/12.1.0": {
+      "sha512": "CTA1/KySVdtPyq0IWW9WB+IwmOpua88xCaZKD94SYC9FIZUghJ4+e3nGjCmFD/3V9uudjJwbYAVqPSBBHYIXgg==",
+      "type": "package",
+      "path": "communitytoolkit.maui.core/12.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ReadMe.txt",
+        "communitytoolkit.maui.core.12.1.0.nupkg.sha512",
+        "communitytoolkit.maui.core.nuspec",
+        "icon.png",
+        "lib/net9.0-android35.0/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0-android35.0/CommunityToolkit.Maui.Core.xml",
+        "lib/net9.0-ios18.0/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0-ios18.0/CommunityToolkit.Maui.Core.xml",
+        "lib/net9.0-maccatalyst18.0/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0-maccatalyst18.0/CommunityToolkit.Maui.Core.xml",
+        "lib/net9.0-tizen10.0/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0-tizen10.0/CommunityToolkit.Maui.Core.xml",
+        "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.xml",
+        "lib/net9.0/CommunityToolkit.Maui.Core.dll",
+        "lib/net9.0/CommunityToolkit.Maui.Core.xml"
+      ]
+    },
     "CommunityToolkit.Mvvm/8.2.2": {
       "sha512": "r0g0k9tGYdrnz8R7T3x5UiokDffeevzK/2P/9SBL6fqLgN8B157MIi/bVUWI1KAz6ZorZrK9AdABCWUeXZZsvA==",
       "type": "package",
@@ -3948,10 +4109,40 @@
         "skiasharp.views.winui.3.119.0.nupkg.sha512",
         "skiasharp.views.winui.nuspec"
       ]
+    },
+    "System.Speech/9.0.5": {
+      "sha512": "nPZ2rcEVaZlxaLwBamFzz8f5MVM7Y08kzmDbcedXgeSWCGS9NN8mFjSsuTZm3W5pQLI4QhHmcu4h7A0Wf+cD/Q==",
+      "type": "package",
+      "path": "system.speech/9.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Speech.targets",
+        "lib/net462/_._",
+        "lib/net8.0/System.Speech.dll",
+        "lib/net8.0/System.Speech.xml",
+        "lib/net9.0/System.Speech.dll",
+        "lib/net9.0/System.Speech.xml",
+        "lib/netstandard2.0/System.Speech.dll",
+        "lib/netstandard2.0/System.Speech.xml",
+        "runtimes/win/lib/net8.0/System.Speech.dll",
+        "runtimes/win/lib/net8.0/System.Speech.xml",
+        "runtimes/win/lib/net9.0/System.Speech.dll",
+        "runtimes/win/lib/net9.0/System.Speech.xml",
+        "system.speech.9.0.5.nupkg.sha512",
+        "system.speech.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0-windows10.0.22621": [
+      "CommunityToolkit.Maui >= 12.1.0",
       "CommunityToolkit.Mvvm >= 8.2.2",
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 9.0.80",
@@ -4012,6 +4203,10 @@
       "net9.0-windows10.0.22621": {
         "targetAlias": "net9.0-windows10.0.22621.0",
         "dependencies": {
+          "CommunityToolkit.Maui": {
+            "target": "Package",
+            "version": "[12.1.0, )"
+          },
           "CommunityToolkit.Mvvm": {
             "target": "Package",
             "version": "[8.2.2, )"

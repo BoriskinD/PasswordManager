@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "iXxm1e/C8gc=",
+  "dgSpecHash": "wWm6ueFQdAw=",
   "success": true,
   "projectFilePath": "C:\\Projects\\PWDManager\\Client\\Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dmitriy\\.nuget\\packages\\communitytoolkit.maui\\12.1.0\\communitytoolkit.maui.12.1.0.nupkg.sha512",
+    "C:\\Users\\Dmitriy\\.nuget\\packages\\communitytoolkit.maui.core\\12.1.0\\communitytoolkit.maui.core.12.1.0.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.5\\microsoft.extensions.configuration.9.0.5.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.5\\microsoft.extensions.configuration.abstractions.9.0.5.nupkg.sha512",
@@ -37,6 +39,7 @@
     "C:\\Users\\Dmitriy\\.nuget\\packages\\skiasharp.views.maui.controls\\3.119.0\\skiasharp.views.maui.controls.3.119.0.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\skiasharp.views.maui.core\\3.119.0\\skiasharp.views.maui.core.3.119.0.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\skiasharp.views.winui\\3.119.0\\skiasharp.views.winui.3.119.0.nupkg.sha512",
+    "C:\\Users\\Dmitriy\\.nuget\\packages\\system.speech\\9.0.5\\system.speech.9.0.5.nupkg.sha512",
     "C:\\Users\\Dmitriy\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22621.57\\microsoft.windows.sdk.net.ref.10.0.22621.57.nupkg.sha512"
   ],
   "logs": []
