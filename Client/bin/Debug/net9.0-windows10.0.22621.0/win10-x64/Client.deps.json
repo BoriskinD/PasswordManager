@@ -9,6 +9,7 @@
     ".NETCoreApp,Version=v9.0/win10-x64": {
       "Client/1.0": {
         "dependencies": {
+          "CommunityToolkit.Maui": "12.1.0",
           "CommunityToolkit.Mvvm": "8.2.2",
           "Microsoft.Extensions.Logging.Debug": "8.0.0",
           "Microsoft.Maui.Controls": "9.0.80",
@@ -31,6 +32,31 @@
           "WinRT.Runtime.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.0.48161"
+          }
+        }
+      },
+      "CommunityToolkit.Maui/12.1.0": {
+        "dependencies": {
+          "CommunityToolkit.Maui.Core": "12.1.0",
+          "Microsoft.Maui.Controls": "9.0.80"
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "CommunityToolkit.Maui.Core/12.1.0": {
+        "dependencies": {
+          "Microsoft.Maui.Core": "9.0.80",
+          "Microsoft.Maui.Essentials": "9.0.80",
+          "System.Speech": "9.0.5"
+        },
+        "runtime": {
+          "lib/net9.0-windows10.0.19041/CommunityToolkit.Maui.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -602,6 +628,14 @@
           }
         }
       },
+      "System.Speech/9.0.5": {
+        "runtime": {
+          "runtimes/win/lib/net9.0/System.Speech.dll": {
+            "assemblyVersion": "9.0.0.5",
+            "fileVersion": "9.0.525.21509"
+          }
+        }
+      },
       "Microsoft.Web.WebView2.Core.Projection/1.0.3179.45": {
         "runtime": {
           "Microsoft.Web.WebView2.Core.Projection.dll": {
@@ -622,6 +656,20 @@
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
+    },
+    "CommunityToolkit.Maui/12.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aFHT0CYO/Op4Nyd9w8TWkaVixFWRiBxlC5VMxly2OL1hN1+2PrEWak8GIQ4zdJeBTPUGIYpKHBEoSLYwmGqUng==",
+      "path": "communitytoolkit.maui/12.1.0",
+      "hashPath": "communitytoolkit.maui.12.1.0.nupkg.sha512"
+    },
+    "CommunityToolkit.Maui.Core/12.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CTA1/KySVdtPyq0IWW9WB+IwmOpua88xCaZKD94SYC9FIZUghJ4+e3nGjCmFD/3V9uudjJwbYAVqPSBBHYIXgg==",
+      "path": "communitytoolkit.maui.core/12.1.0",
+      "hashPath": "communitytoolkit.maui.core.12.1.0.nupkg.sha512"
     },
     "CommunityToolkit.Mvvm/8.2.2": {
       "type": "package",
@@ -853,6 +901,13 @@
       "sha512": "sha512-ApBQ+okTw05BTSdw1wALI2IwJgQ0eXa2nvzoLMTHtbTtrQiGJzMR0K//Qh4PkYrVI5LPSd8NdG9R1B0L6gRiSg==",
       "path": "skiasharp.views.winui/3.119.0",
       "hashPath": "skiasharp.views.winui.3.119.0.nupkg.sha512"
+    },
+    "System.Speech/9.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nPZ2rcEVaZlxaLwBamFzz8f5MVM7Y08kzmDbcedXgeSWCGS9NN8mFjSsuTZm3W5pQLI4QhHmcu4h7A0Wf+cD/Q==",
+      "path": "system.speech/9.0.5",
+      "hashPath": "system.speech.9.0.5.nupkg.sha512"
     },
     "Microsoft.Web.WebView2.Core.Projection/1.0.3179.45": {
       "type": "reference",

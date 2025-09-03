@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\samplescaletoanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\samplescaletoanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\viewmodels\\mainpagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,20 +26,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainPageVM.cs",
+              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
+              "RelativeDocumentMoniker": "Client\\ViewModels\\MainPageVM.cs",
+              "ToolTip": "C:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
+              "RelativeToolTip": "Client\\ViewModels\\MainPageVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T10:00:06.385Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "SampleScaleToAnimation.cs",
+              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\SampleScaleToAnimation.cs",
+              "RelativeDocumentMoniker": "Client\\SampleScaleToAnimation.cs",
+              "ToolTip": "C:\\Projects\\PWDManager\\Client\\SampleScaleToAnimation.cs",
+              "RelativeToolTip": "Client\\SampleScaleToAnimation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T09:43:58.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
               "RelativeDocumentMoniker": "Client\\MauiProgram.cs",
               "ToolTip": "C:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
               "RelativeToolTip": "Client\\MauiProgram.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T10:39:24.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T10:39:24.495Z"
             },
             {
               "$type": "Document",
@@ -41,7 +73,7 @@
               "RelativeDocumentMoniker": "Client\\Views\\MainPage.xaml",
               "ToolTip": "C:\\Projects\\PWDManager\\Client\\Views\\MainPage.xaml",
               "RelativeToolTip": "Client\\Views\\MainPage.xaml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADAAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-21T09:43:36.481Z",
               "EditorCaption": ""

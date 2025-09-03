@@ -211,6 +211,12 @@
     <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.22621.57\lib\net8.0\WinRT.Runtime.dll">
       <PackagePath>WinRT.Runtime.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\communitytoolkit.maui\12.1.0\lib\net9.0-windows10.0.19041\CommunityToolkit.Maui.dll">
+      <PackagePath>CommunityToolkit.Maui.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\communitytoolkit.maui.core\12.1.0\lib\net9.0-windows10.0.19041\CommunityToolkit.Maui.Core.dll">
+      <PackagePath>CommunityToolkit.Maui.Core.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\communitytoolkit.mvvm\8.2.2\lib\net6.0\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
@@ -360,6 +366,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\skiasharp.views.winui\3.119.0\lib\net8.0-windows10.0.19041\SkiaSharp.Views.Windows.dll">
       <PackagePath>SkiaSharp.Views.Windows.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\system.speech\9.0.5\runtimes\win\lib\net9.0\System.Speech.dll">
+      <PackagePath>System.Speech.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dmitriy\.nuget\packages\microsoft.maui.controls.core\9.0.80\lib\net9.0-windows10.0.20348\ar\Microsoft.Maui.Controls.resources.dll">
       <PackagePath>ar\Microsoft.Maui.Controls.resources.dll</PackagePath>
