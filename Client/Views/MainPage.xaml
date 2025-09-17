@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local ="clr-namespace:Client"
-             x:Class="Client.MainPage">
+             x:Class="Client.MainPage"
+             BackgroundColor="White">
 
     <!--Родительский Грид-->
     <Grid>
@@ -13,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <CollectionView x:Name="collectionView" Grid.Row="0"
-                        ItemsSource="{Binding Apps}" SelectionMode="Single">
+                        ItemsSource="{Binding Apps}" SelectionMode="None">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal" Span="2"
@@ -35,14 +36,15 @@
 
                                 <VisualState Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Property="Scale" Value="1.05"/>
+                                        <Setter Property="Scale" Value="1.03"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
                         <Image x:Name ="ItemImage" Source="{Binding ImagePath}" Aspect="AspectFit"                            
-                               HorizontalOptions="Center" VerticalOptions="Center">
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               Margin="15,5,0,0">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
@@ -78,26 +80,30 @@
 
         <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Start">
 
-            <Button Text="{Binding UserInfo}" HeightRequest="10"
-                    Margin="10,0,0,0" Command="{Binding BackToLoginPageCommand}"/>
+            <Button Text="{Binding UserInfo}" HeightRequest="20"
+                    Margin="10,0,0,0" WidthRequest="80"
+                    BackgroundColor="#aee239"
+                    Command="{Binding BackToLoginPageCommand}"/>
         </HorizontalStackLayout>
 
         <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End">
 
             <Button Text="Загрузить данные" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Beige"
+                    BorderWidth="1" BackgroundColor="#69d2e7"
                     Margin="0,10,10,10" HeightRequest="20"
                     WidthRequest="250"
                     Command="{Binding DownloadDataFromDBCommand}"/>
             
             <Button Text="Добавить" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Beige"
-                    Margin="0,10,10,10"
+                    BorderWidth="1" BackgroundColor="#69d2e7"
+                    Margin="0,10,10,10" WidthRequest="140"
+                    HeightRequest="20"
                     Command="{Binding OpenAddPageCommand}"/>
             
             <Button Text="Удалить" FontSize="22"
-                    BorderWidth="1" BackgroundColor="Aqua"
-                    Margin="0,10,10,10"
+                    BorderWidth="1" BackgroundColor="#69d2e7"
+                    Margin="0,10,10,10" WidthRequest="130"
+                    HeightRequest="20"
                     Command="{Binding DeleteItemCommand}"/>
         </HorizontalStackLayout>
     </Grid>

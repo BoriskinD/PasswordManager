@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Projects\\PWDManager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|c:\\projects\\pwdmanager\\client\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{6C342DFB-91E0-4380-B953-4EFFAD658A12}|Client\\Client.csproj|solutionrelative:client\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -26,11 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "Client\\Views\\LoginPage.xaml",
+              "ToolTip": "C:\\Projects\\PWDManager\\Client\\Views\\LoginPage.xaml",
+              "RelativeToolTip": "Client\\Views\\LoginPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-17T10:28:02.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainPageVM.cs",
               "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\ViewModels\\MainPageVM.cs",
               "RelativeDocumentMoniker": "Client\\ViewModels\\MainPageVM.cs",
@@ -42,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SampleScaleToAnimation.cs",
               "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\SampleScaleToAnimation.cs",
               "RelativeDocumentMoniker": "Client\\SampleScaleToAnimation.cs",
@@ -50,12 +67,11 @@
               "RelativeToolTip": "Client\\SampleScaleToAnimation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T09:43:58.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T09:43:58.429Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\MauiProgram.cs",
               "RelativeDocumentMoniker": "Client\\MauiProgram.cs",
@@ -67,13 +83,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Projects\\PWDManager\\Client\\Views\\MainPage.xaml",
               "RelativeDocumentMoniker": "Client\\Views\\MainPage.xaml",
               "ToolTip": "C:\\Projects\\PWDManager\\Client\\Views\\MainPage.xaml",
               "RelativeToolTip": "Client\\Views\\MainPage.xaml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAGEAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-21T09:43:36.481Z",
               "EditorCaption": ""

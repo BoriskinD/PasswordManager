@@ -11,6 +11,7 @@
 
         <Entry Placeholder="Пароль" Margin="5"
                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+               
                Text="{Binding UserPassword}"/>
 
         <Grid>
@@ -22,12 +23,13 @@
             <Button Grid.Column="0" Text ="Войти"
                     HorizontalOptions="End" VerticalOptions="Center"
                     Margin="0,0,10,0" WidthRequest="175"
+                    BackgroundColor="#69d2e7" HeightRequest="20"
                     Command="{Binding LoginCommand}"/>
 
             <Button Grid.Column="1" Text="Зарегистрироваться"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Center"
-                    WidthRequest="175"
+                    HorizontalOptions="Start" VerticalOptions="Center"
+                    WidthRequest="175" BackgroundColor="#69d2e7"
+                    HeightRequest="20"
                     Command ="{Binding RegisterCommand}"/>
         </Grid>
 
