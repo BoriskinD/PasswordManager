@@ -15,7 +15,7 @@ namespace Client
         {
             Window window = base.CreateWindow(activationState);
             window.Title = "PWDManager";
-            window.Height = 200;
+            window.Height = 250;
             window.Width = 450;
 
             return window;

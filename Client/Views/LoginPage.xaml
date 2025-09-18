@@ -11,8 +11,16 @@
 
         <Entry Placeholder="Пароль" Margin="5"
                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-               
+               IsPassword="{Binding IsEntryPassword}"
                Text="{Binding UserPassword}"/>
+
+        <HorizontalStackLayout>
+            
+            <CheckBox IsChecked="{Binding IsShowPassword}"/>
+            <Label Text="показать пароль" Margin="5,0,0,0"/>
+
+        </HorizontalStackLayout>
+        
 
         <Grid>
             <Grid.ColumnDefinitions>

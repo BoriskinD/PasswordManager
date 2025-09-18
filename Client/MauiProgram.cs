@@ -2,7 +2,6 @@
 using Client.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Client
 {

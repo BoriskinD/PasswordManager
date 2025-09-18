@@ -2,28 +2,61 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Client.ViewModels
 {
-    public class LoginPageVM
+    public class LoginPageVM : INotifyPropertyChanged
     {
-        private string? userLogin, userPassword;
+        private string? userLogin;
+        private string? userPassword;
+        private bool isEntryPassword;
+        private bool isShowPassword;
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
 
+        public bool IsEntryPassword
+        {
+            get => isEntryPassword;
+            set 
+            {
+                isEntryPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsShowPassword
+        {
+            get => isShowPassword;
+            set 
+            {
+                isShowPassword = value;
+                IsEntryPassword = !isShowPassword;
+            }
+        }
+
         public string UserLogin
         {
             get => userLogin;
-            set => userLogin = value;
+            set
+            {
+                userLogin = value;
+            } 
         }
 
         public string UserPassword
         {
             get => userPassword;
-            set => userPassword = value; 
+            set
+            {
+                userPassword = value;
+            }  
         }
 
         public LoginPageVM(INavigationService navigationService)
@@ -32,6 +65,7 @@ namespace Client.ViewModels
             LoginCommand = new RelayCommand(LoginUser);
             RegisterCommand = new RelayCommand(RegisterNewUser);
             _navigationService = navigationService;
+            IsEntryPassword = true;
         }
 
         private async void LoginUser()
@@ -106,5 +140,8 @@ namespace Client.ViewModels
                 }
             }
         }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
+                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
