@@ -10,8 +10,14 @@ namespace Client.ViewModels
     {
         private HttpWrapper httpWrapper;
         private Image image;
-        private string? title, userLogin, userPassword, imagePath;
-        private string baseDirectory, imageFolder, pathToImage, selectedImage;
+        private string? title;
+        private string? userLogin;
+        private string? userPassword;
+        private string? imagePath;
+        private string baseDirectory;
+        private string imageFolder;
+        private string pathToImage;
+        private string selectedImage;
         private int _userId;
 
         public event PropertyChangedEventHandler? PropertyChanged;

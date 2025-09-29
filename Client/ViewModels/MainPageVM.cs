@@ -61,7 +61,7 @@ namespace Client.ViewModels
         {
             _navigationService.OpenWindow<AddPage>(window =>
             {
-                window.Width = 500;
+                window.Width = 400;
                 window.Height = 500;
             }, loginedUser.Id);
         }
