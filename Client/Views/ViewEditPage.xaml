@@ -3,33 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Client.ViewEditPage"
              Title="ViewEditPage">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
         <Image Source="{Binding ImagePath}" Grid.Row="0"
-               Grid.Column="0"/>
+               Margin="5"/>
 
-        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-            <Entry Text="{Binding Title}" IsEnabled="{Binding IsTitleEnabled}"/>
-            <Entry Text="{Binding UserLogin}" IsEnabled="{Binding IsUserLoginEnabled}"/>
-            <Entry Text="{Binding UserPassword}" IsEnabled="{Binding IsUserPasswordEnabled}"/>
-            <HorizontalStackLayout Spacing="5">
+        <VerticalStackLayout Grid.Row="1">
+            <Entry Text="{Binding Title}" Margin="5"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   IsEnabled="{Binding IsTitleEnabled}"/>
+            <Entry Text="{Binding UserLogin}" Margin="5"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   IsEnabled="{Binding IsUserLoginEnabled}"/>
+            <Entry Text="{Binding UserPassword}" Margin="5"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   IsEnabled="{Binding IsUserPasswordEnabled}"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
                 <CheckBox IsChecked="{Binding IsEditAllowed}"/>
                 <Label Text="Разрешить редактирование" HorizontalOptions="Center"
                        VerticalOptions="Center"/>
             </HorizontalStackLayout>
-        </VerticalStackLayout>
 
-        <Button Text="Сохранить" Grid.Row="1"
-                Grid.ColumnSpan="2" HorizontalOptions="Center"
-                VerticalOptions="Center" Command="{Binding SaveChangesCommand}"/>
+            <Button Text="Сохранить" HorizontalOptions="Center"
+                    VerticalOptions="Center" Command="{Binding SaveChangesCommand}"/>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

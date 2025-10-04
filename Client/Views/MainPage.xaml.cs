@@ -20,7 +20,6 @@ namespace Client
 
                 DisplayAlert("Инфо", message.Value, "ОК");
             });
-           
         }
     }
 }

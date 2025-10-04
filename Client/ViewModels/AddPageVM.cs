@@ -64,17 +64,16 @@ namespace Client.ViewModels
 
         public AddPageVM()
         {
-            baseDirectory = AppDomain.CurrentDomain.BaseDirectory; 
-            imageFolder = Path.Combine(baseDirectory, "Images");
-
-            ImagePath = "no_image_available.jpg";
-            pathToImage = string.Empty;
-            selectedImage = string.Empty;
-
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
             SelectImageCommand = new RelayCommand(SelectImage);
             image = new Image();
+
+            baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            imageFolder = Path.Combine(baseDirectory, "Images");
+            ImagePath = "no_image_available.jpg";
+            pathToImage = string.Empty;
+            selectedImage = string.Empty;
         }
 
         private async void Save()

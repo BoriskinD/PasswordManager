@@ -6,7 +6,6 @@
              x:Class="Client.MainPage"
              BackgroundColor="White">
 
-    <!--Родительский Грид-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -68,6 +67,7 @@
                                HorizontalOptions="Center" VerticalOptions="Center"
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                FontAttributes="Bold" FontSize="40"/>
+
                         <Label Text="Нажмите кнопку 'Загрузить данные'."
                                HorizontalOptions="Center" VerticalOptions="Center"
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
@@ -93,13 +93,13 @@
                     Margin="0,10,10,10" HeightRequest="20"
                     WidthRequest="250"
                     Command="{Binding DownloadDataFromDBCommand}"/>
-            
+
             <Button Text="Добавить" FontSize="22"
                     BorderWidth="1" BackgroundColor="#69d2e7"
                     Margin="0,10,10,10" WidthRequest="140"
                     HeightRequest="20"
                     Command="{Binding OpenAddPageCommand}"/>
-            
+
             <Button Text="Удалить" FontSize="22"
                     BorderWidth="1" BackgroundColor="#69d2e7"
                     Margin="0,10,10,10" WidthRequest="130"
@@ -107,5 +107,4 @@
                     Command="{Binding DeleteItemCommand}"/>
         </HorizontalStackLayout>
     </Grid>
-
 </ContentPage>

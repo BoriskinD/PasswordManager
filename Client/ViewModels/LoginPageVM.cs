@@ -16,10 +16,10 @@ namespace Client.ViewModels
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public RelayCommand LoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public bool IsEntryPassword
         {
@@ -65,6 +65,7 @@ namespace Client.ViewModels
             LoginCommand = new RelayCommand(LoginUser);
             RegisterCommand = new RelayCommand(RegisterNewUser);
             _navigationService = navigationService;
+
             IsEntryPassword = true;
         }
 

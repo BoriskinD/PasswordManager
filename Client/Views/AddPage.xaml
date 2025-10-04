@@ -18,12 +18,12 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    Margin="5" Text="{Binding Title}"/>
-            
+
             <Entry Placeholder="Имя пользователя"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
-                   Margin="5" Text="{Binding UserLogin}"/> 
-            
+                   Margin="5" Text="{Binding UserLogin}"/>
+
             <Entry Placeholder="Пароль"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
@@ -33,7 +33,5 @@
                     VerticalOptions="Center" Command="{Binding SaveCommand}"
                     Margin="0,5,0,5"/>
         </VerticalStackLayout>
-
     </Grid>
-    
 </ContentPage>

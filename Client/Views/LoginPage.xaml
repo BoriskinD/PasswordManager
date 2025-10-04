@@ -4,7 +4,6 @@
              x:Class="Client.Views.LoginPage"
              Title="LoginPage">
     <VerticalStackLayout>
-
         <Entry Placeholder="Логин" Margin="5"
                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                Text="{Binding UserLogin}"/>
@@ -15,11 +14,9 @@
                Text="{Binding UserPassword}"/>
 
         <HorizontalStackLayout HorizontalOptions="Center">
-            
             <CheckBox IsChecked="{Binding IsShowPassword}"/>
             <Label Text="Показать пароль" Margin="0,10,0,0"
-                   FontSize="15"/>
-
+                   FontSize="15"/>            
         </HorizontalStackLayout>
         
 

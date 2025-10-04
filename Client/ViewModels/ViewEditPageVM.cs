@@ -17,30 +17,6 @@ namespace Client.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand SaveChangesCommand { get; }
 
-        public bool IsEditAllowed
-        { 
-            get => isEditAllowed;
-            set 
-            {
-                isEditAllowed = value;
-                OnPropertyChanged();
-
-                if (isEditAllowed)
-                { 
-                    IsTitleEnabled = true;
-                    IsUserLoginEnabled = true;
-                    IsUserPasswordEnabled = true;
-                }
-                else
-                {
-                    IsTitleEnabled = false;
-                    IsUserLoginEnabled = false;
-                    IsUserPasswordEnabled = false;
-
-                }
-            }
-        }
-
         public bool IsTitleEnabled
         { 
             get => isTitleEnabled;
@@ -111,10 +87,35 @@ namespace Client.ViewModels
             }
         }
 
+        public bool IsEditAllowed
+        {
+            get => isEditAllowed;
+            set
+            {
+                isEditAllowed = value;
+                OnPropertyChanged();
+
+                if (isEditAllowed)
+                {
+                    IsTitleEnabled = true;
+                    IsUserLoginEnabled = true;
+                    IsUserPasswordEnabled = true;
+                }
+                else
+                {
+                    IsTitleEnabled = false;
+                    IsUserLoginEnabled = false;
+                    IsUserPasswordEnabled = false;
+
+                }
+            }
+        }
+
         public ViewEditPageVM()
         {
             httpWrapper = HttpWrapper.GetInstance();
             SaveChangesCommand = new RelayCommand(SaveChanges);
+
             IsTitleEnabled = false;
             IsUserLoginEnabled = false;
             IsUserPasswordEnabled = false;

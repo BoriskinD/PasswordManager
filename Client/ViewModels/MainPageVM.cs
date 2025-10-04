@@ -66,18 +66,30 @@ namespace Client.ViewModels
             }, loginedUser.Id);
         }
 
-        private void SetSelectedItem(MyApp selectedApp)
-        {
-            SelectedApp = selectedApp;
-        }
-
         private void OpenViewEditPage(MyApp selectedApp)
         {
             _navigationService.OpenWindow<ViewEditPage>(window =>
             {
-                window.Width = 500;
-                window.Height = 500;
+                window.Width = 400;
+                window.Height = 560;
             }, selectedApp);
+        }
+
+        private void BackToLoginPage()
+        {
+            _navigationService.OpenWindow<LoginPage>(window =>
+            {
+                window.Title = "PWDManager";
+                window.Height = 250;
+                window.Width = 450;
+            });
+
+            WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.MainPage);
+        }
+
+        private void SetSelectedItem(MyApp selectedApp)
+        {
+            SelectedApp = selectedApp;
         }
 
         private async void DeleteSelectedItem()
@@ -115,24 +127,12 @@ namespace Client.ViewModels
             }
         }
 
-        private void BackToLoginPage()
-        {
-            _navigationService.OpenWindow<LoginPage>(window =>
-            { 
-                window.Title = "PWDManager";
-                window.Height = 200;
-                window.Width = 450;
-            });
-
-            WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.MainPage);
-        }
-
         public void SetParameter(object parameter)
         {
             if (parameter is User user)
             {
                 loginedUser = user;
-                OnPropertyChanged("UserInfo");
+                OnPropertyChanged(nameof(UserInfo));
             }
         }
 
