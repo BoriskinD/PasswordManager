@@ -9,7 +9,6 @@ namespace Client.ViewModels
     public class AddPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         private HttpWrapper httpWrapper;
-        private Image image;
         private string? title;
         private string? userLogin;
         private string? userPassword;
@@ -67,7 +66,6 @@ namespace Client.ViewModels
             httpWrapper = HttpWrapper.GetInstance();
             SaveCommand = new RelayCommand(Save);
             SelectImageCommand = new RelayCommand(SelectImage);
-            image = new Image();
 
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             imageFolder = Path.Combine(baseDirectory, "Images");
@@ -122,16 +120,13 @@ namespace Client.ViewModels
                 
             try
             {
-                PickOptions pickOptions = new PickOptions()
-                { 
-                    FileTypes = FilePickerFileType.Images
-                };
+                PickOptions pickOptions = new PickOptions() { FileTypes = FilePickerFileType.Images };
 
                 FileResult? result = await FilePicker.Default.PickAsync(pickOptions);
                 if (result != null)
                 {
                     selectedImage = result.FullPath;
-                    ImagePath = image.ResizeImage(selectedImage, 300, 300);
+                    ImagePath = Image.ResizeImage(selectedImage, 300, 300);
                     pathToImage = Path.Combine(imageFolder, result.FileName);
                     //ImagePath = pathToImage;
                 }

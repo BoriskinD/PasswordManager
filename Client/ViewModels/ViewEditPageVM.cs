@@ -11,11 +11,21 @@ namespace Client.ViewModels
     {
         private HttpWrapper httpWrapper;
         private int selectedAppId;
-        private string? title, userLogin, userPassword, imagePath;
-        private bool isEditAllowed, isTitleEnabled, isUserLoginEnabled, isUserPasswordEnabled;
+        string resizedImage;
+        string newImagePath;
+        string oldImage;
+        private string? title;
+        private string? userLogin;
+        private string? userPassword;
+        private string? imagePath;
+        private bool isEditAllowed;
+        private bool isTitleEnabled;
+        private bool isUserLoginEnabled;
+        private bool isUserPasswordEnabled;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand SaveChangesCommand { get; }
+        public ICommand SelectImageCommand { get; }
 
         public bool IsTitleEnabled
         { 
@@ -115,6 +125,7 @@ namespace Client.ViewModels
         {
             httpWrapper = HttpWrapper.GetInstance();
             SaveChangesCommand = new RelayCommand(SaveChanges);
+            SelectImageCommand = new RelayCommand(SelectImage);
 
             IsTitleEnabled = false;
             IsUserLoginEnabled = false;
@@ -137,6 +148,12 @@ namespace Client.ViewModels
             {
                 if (response.IsSuccessStatusCode)
                 {
+                    File.Copy(resizedImage, newImagePath, true);
+                    if (File.Exists(oldImage))
+                    {
+                        File.Delete(oldImage);
+                    }
+
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, false, this), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
@@ -145,6 +162,36 @@ namespace Client.ViewModels
                     WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось изменить данные"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
             }  
+        }
+
+        private async void SelectImage()
+        {
+            try
+            {
+                PickOptions pickOptions = new PickOptions() { FileTypes = FilePickerFileType.Images };
+
+                FileResult? result = await FilePicker.Default.PickAsync(pickOptions);
+                if (result != null)
+                {
+                    TransformFile(result.FullPath);
+                }
+            }
+            catch (Exception)
+            {
+                WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."), (int)MessengerTokens.Tokens.AddPage);
+            }
+        }
+
+        private void TransformFile(string selectedImagePath)
+        {
+            resizedImage = Image.ResizeImage(selectedImagePath, 300, 300);
+            string resizedImageFileName = Path.GetFileName(resizedImage);
+
+            string? sourceImageDir = Path.GetDirectoryName(ImagePath);
+            newImagePath = Path.Combine(sourceImageDir, resizedImageFileName);
+
+            oldImage = ImagePath;
+            ImagePath = newImagePath;
         }
 
         public void SetParameter(object parameter)

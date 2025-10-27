@@ -10,8 +10,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Image Source="{Binding ImagePath}" Grid.Row="0"
-               Margin="5"/>
+        <ImageButton Source="{Binding ImagePath}" Grid.Row="0"
+                     Command="{Binding SelectImageCommand}" Margin="5"/>
 
         <VerticalStackLayout Grid.Row="1">
             <Entry Text="{Binding Title}" Margin="5"

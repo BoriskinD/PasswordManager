@@ -2,9 +2,9 @@
 
 namespace Client
 {
-    public class Image
+    public static class Image
     {
-        public string ResizeImage(string imagePath, int newWidth, int newHeight)
+        public static string ResizeImage(string imagePath, int newWidth, int newHeight)
         { 
             FileStream inputStream = File.OpenRead(imagePath);
             using SKBitmap originalBitmap = SKBitmap.Decode(inputStream);
