@@ -10,7 +10,7 @@
             _serviceProvider = serviceProvider;
         }
 
-        public void OpenWindow<TPage>(Action<Window> configureWindow, object parameter = null) where TPage : Page
+        public void OpenWindow<TPage>(Action<Window> configureWindow, object? parameter = null) where TPage : Page
         {
             //Получить страницу из контейнера
             TPage page = _serviceProvider.GetRequiredService<TPage>();

@@ -141,13 +141,14 @@ namespace Client.ViewModels
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
-                ImagePath = ImagePath
+                ImagePath = string.IsNullOrEmpty(newImagePath) ? ImagePath : newImagePath
             };
 
             using HttpResponseMessage response = await httpWrapper.Put(changedApp);
             {
                 if (response.IsSuccessStatusCode)
                 {
+                    //Перезапись файлов с одинаковым именем
                     File.Copy(resizedImage, newImagePath, true);
                     if (File.Exists(oldImage))
                     {
@@ -191,7 +192,8 @@ namespace Client.ViewModels
             newImagePath = Path.Combine(sourceImageDir, resizedImageFileName);
 
             oldImage = ImagePath;
-            ImagePath = newImagePath;
+            //тут есть проблема
+            ImagePath = resizedImage;
         }
 
         public void SetParameter(object parameter)

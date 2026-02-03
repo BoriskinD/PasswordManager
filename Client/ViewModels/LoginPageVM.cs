@@ -44,19 +44,13 @@ namespace Client.ViewModels
         public string UserLogin
         {
             get => userLogin;
-            set
-            {
-                userLogin = value;
-            } 
+            set => userLogin = value;
         }
 
         public string UserPassword
         {
             get => userPassword;
-            set
-            {
-                userPassword = value;
-            }  
+            set => userPassword = value;
         }
 
         public LoginPageVM(INavigationService navigationService)
