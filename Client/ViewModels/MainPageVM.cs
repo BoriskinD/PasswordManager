@@ -141,9 +141,8 @@ namespace Client.ViewModels
             MyApp? tmp = Apps.FirstOrDefault(element => element.Id == changedApp.Id);
             if (tmp != null)
             {
-                tmp.Title = changedApp.Title;
-                tmp.UserLogin = changedApp.UserLogin;
-                tmp.UserPassword = changedApp.UserPassword;
+                Apps.Remove(tmp);
+                Apps.Add(changedApp);
             }
         }
 
