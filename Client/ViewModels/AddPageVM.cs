@@ -28,28 +28,19 @@ namespace Client.ViewModels
         public string Title 
         {
             get => title;
-            set 
-            {
-                title = value;
-            }
+            set => title = value;
         }
 
         public string UserLogin
         {
             get => userLogin;
-            set
-            {
-                userLogin = value;
-            }
+            set => userLogin = value;
         }
 
         public string UserPassword
         {
             get => userPassword;
-            set
-            {
-                userPassword = value;
-            }
+            set => userPassword = value;
         }
 
         public string ImagePath
