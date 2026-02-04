@@ -63,7 +63,7 @@ namespace Client.ViewModels
             {
                 window.Width = 400;
                 window.Height = 500;
-            }, loginedUser.Id);
+            }, loginedUser);
         }
 
         private void OpenViewEditPage(MyApp selectedApp)

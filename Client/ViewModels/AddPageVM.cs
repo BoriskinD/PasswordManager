@@ -17,6 +17,7 @@ namespace Client.ViewModels
         private string imageFolder;
         private string pathToImage;
         private string selectedImage;
+        private string userName;
         private int _userId;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -68,10 +69,10 @@ namespace Client.ViewModels
             SelectImageCommand = new RelayCommand(SelectImage);
 
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            imageFolder = Path.Combine(baseDirectory, "Images");
             ImagePath = "no_image_available.jpg";
             pathToImage = string.Empty;
             selectedImage = string.Empty;
+            userName = string.Empty;
         }
 
         private async void Save()
@@ -128,7 +129,6 @@ namespace Client.ViewModels
                     selectedImage = result.FullPath;
                     ImagePath = Image.ResizeImage(selectedImage, 300, 300);
                     pathToImage = Path.Combine(imageFolder, result.FileName);
-                    //ImagePath = pathToImage;
                 }
             }
             catch (Exception)
@@ -139,9 +139,11 @@ namespace Client.ViewModels
 
         public void SetParameter(object parameter)
         {
-            if (parameter is int userId)
+            if (parameter is User user)
             {
-                _userId = userId;
+                _userId = user.Id;
+                userName = user.Login;
+                imageFolder = Path.Combine(baseDirectory, $"Images/{userName}");
             }
         }
 
