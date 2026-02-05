@@ -90,7 +90,7 @@ namespace Client.ViewModels
 
                     if (!string.IsNullOrEmpty(selectedImage))
                     {
-                        File.Copy(selectedImage, pathToImage);
+                        File.Copy(selectedImage, pathToImage, true);
                     }
 
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(newApp), (int)MessengerTokens.Tokens.MainPageVM);
@@ -119,12 +119,7 @@ namespace Client.ViewModels
                 {
                     selectedImage = result.FullPath;
                     ImagePath = Image.ResizeImage(selectedImage, 300, 300);
-
-                    string fileName = Path.GetFileNameWithoutExtension(result.FullPath);
-                    string extension = Path.GetExtension(result.FullPath);
-                    string formattedDateTime = $"{DateTime.Now.ToString("dd-MM-yyyyy")}_{DateTime.Now.ToString("hh-mm-ss")}";
-
-                    pathToImage = Path.Combine(imageFolder, $"{fileName}_{formattedDateTime}{extension}");
+                    pathToImage = Path.Combine(imageFolder, result.FileName);
                 }
             }
             catch (Exception)

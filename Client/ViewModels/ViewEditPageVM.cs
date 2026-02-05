@@ -148,11 +148,12 @@ namespace Client.ViewModels
             {
                 if (response.IsSuccessStatusCode)
                 {
+                    //Перезапись файлов с одинаковым именем
+                    File.Copy(resizedImage, newImagePath, true);
                     if (File.Exists(oldImage))
                     {
                         File.Delete(oldImage);
                     }
-                    File.Copy(resizedImage, newImagePath);
 
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, false, this), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
@@ -185,14 +186,13 @@ namespace Client.ViewModels
         private void TransformFile(string selectedImagePath)
         {
             resizedImage = Image.ResizeImage(selectedImagePath, 300, 300);
-            string resizedImageFileName = Path.GetFileNameWithoutExtension(resizedImage);
-            string extension = Path.GetExtension(resizedImage);
-            string formattedDateTime = $"{DateTime.Now.ToString("dd-MM-yyyyy")}_{DateTime.Now.ToString("hh-mm-ss")}";
+            string resizedImageFileName = Path.GetFileName(resizedImage);
 
             string? sourceImageDir = Path.GetDirectoryName(ImagePath);
-            newImagePath = Path.Combine(sourceImageDir, $"{resizedImageFileName}_{formattedDateTime}{extension}");
+            newImagePath = Path.Combine(sourceImageDir, resizedImageFileName);
 
             oldImage = ImagePath;
+            //тут есть проблема
             ImagePath = resizedImage;
         }
 
