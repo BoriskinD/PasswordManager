@@ -102,7 +102,12 @@ namespace Client.ViewModels
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-            await httpWrapper.Delete(SelectedApp.Id);    
+            if (File.Exists(SelectedApp.ImagePath))
+            {
+                File.Delete(SelectedApp.ImagePath);
+            }
+            
+            await httpWrapper.Delete(SelectedApp.Id);
             Apps.Remove(SelectedApp);
         }
 
