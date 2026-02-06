@@ -13,6 +13,12 @@ public partial class AddPage : ContentPage
 
 		WeakReferenceMessenger.Default.Register<Message<string>,int>(this, (int)MessengerTokens.Tokens.AddPage, (recipient, message) => 
 		{
+            if (message.CloseWindow)
+            {
+                Application.Current?.CloseWindow(Window);
+                return;
+            }
+
             DisplayAlert("Инфо", message.Value, "Ок");
         });
     }

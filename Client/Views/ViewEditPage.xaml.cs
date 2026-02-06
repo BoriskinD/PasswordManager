@@ -12,6 +12,12 @@ public partial class ViewEditPage : ContentPage
 
         WeakReferenceMessenger.Default.Register<Message<string>,int>(this, (int)MessengerTokens.Tokens.ViewEditPage, (recipient, message) => 
         {
+            if (message.CloseWindow)
+            {
+                Application.Current?.CloseWindow(Window);
+                return;
+            }
+
             DisplayAlert("Инфо", message.Value, "ОК");
         });
     }
