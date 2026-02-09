@@ -20,6 +20,8 @@ namespace Client.ViewModels
         public ICommand DownloadDataFromDBCommand { get; }
         public ICommand BackToLoginPageCommand { get; }
 
+        public static string defaultImage = "no_image_available.jpg";
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private HttpWrapper httpWrapper;

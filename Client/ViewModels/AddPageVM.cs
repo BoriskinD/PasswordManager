@@ -60,7 +60,7 @@ namespace Client.ViewModels
             SelectImageCommand = new RelayCommand(SelectImage);
 
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            ImagePath = "no_image_available.jpg";
+            ImagePath = MainPageVM.defaultImage;
             pathToImage = string.Empty;
             selectedImage = string.Empty;
             userName = string.Empty;
