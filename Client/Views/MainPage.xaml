@@ -41,6 +41,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
+                        <Label Text="{Binding ServiceName}" HorizontalOptions="Center"/>
                         <Image x:Name ="ItemImage" Source="{Binding ImagePath}" Aspect="AspectFit"                            
                                HorizontalOptions="Center" VerticalOptions="Center"
                                Margin="15,5,0,0">

@@ -1,4 +1,7 @@
-﻿namespace Client.Model
+﻿using Client.ViewModels;
+using CommunityToolkit.Maui.ImageSources;
+
+namespace Client.Model
 {
     public class MyApp
     {
@@ -13,5 +16,8 @@
         public string? UserPassword { get; set; }
 
         public string? ImagePath { get; set; }
+
+        public string? ServiceName =>
+             string.Equals(ImagePath, MainPageVM.defaultImage) ? Title : string.Empty;
     }
 }
