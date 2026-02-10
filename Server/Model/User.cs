@@ -6,7 +6,9 @@
 
         public string? Login { get; set; }
 
-        public string? PasswordHash { get; set; }
+        public string? Password { get; set; }
+
+        public byte[]? Salt { get; set; } = new byte[0];
 
         public List<Application> Apps { get; set; } = new List<Application>();
     }
