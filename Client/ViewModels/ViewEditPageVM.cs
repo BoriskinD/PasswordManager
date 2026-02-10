@@ -152,7 +152,11 @@ namespace Client.ViewModels
                     {
                         File.Delete(oldImage);
                     }
-                    File.Copy(resizedImage, newImagePath);
+
+                    if (!string.IsNullOrEmpty(resizedImage) && !string.IsNullOrEmpty(newImagePath))
+                    {
+                        File.Copy(resizedImage, newImagePath);
+                    }
 
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, false, this), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
@@ -193,7 +197,7 @@ namespace Client.ViewModels
             newImagePath = Path.Combine(sourceImageDir, $"{resizedImageFileName}_{formattedDateTime}{extension}");
 
             oldImage = ImagePath;
-            ImagePath = resizedImage;
+            ImagePath = resizedImage;           
         }
 
         public void SetParameter(object parameter)
