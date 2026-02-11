@@ -94,13 +94,13 @@ namespace Server.Controllers
                 return BadRequest("Пользователь с таким именем уже существует!");
             }
 
-            string hashPassword = PasswordHelper.CreateHash(user.Password);
-            User registeredUser = new User()
-            {
-                Login = user.Login,
-                Password = hashPassword,
-            };
-            context.Users.Add(registeredUser);
+            //string hashPassword = PasswordHelper.CreateHash(user.Password);
+            //User registeredUser = new User()
+            //{
+            //    Login = user.Login,
+            //    Password = hashPassword,
+            //};
+            context.Users.Add(user);
             context.SaveChanges();
 
             return Ok("Регистрация прошла успешно, теперь выполните вход.");
@@ -110,7 +110,7 @@ namespace Server.Controllers
         public async Task<IActionResult> Login([FromBody] User user)
         { 
             User? loginedUser = context.Users.FirstOrDefault(u => u.Login == user.Login);
-            if (loginedUser != null && PasswordHelper.VerifyPassword(user.Password, loginedUser.Password))
+            if (loginedUser != null && PasswordHelper.VerifyPassword(user.PasswordHash, loginedUser.PasswordHash))
             {
                 string token = TokenGenerator.GenerateJwtToken(loginedUser);
                 //Возвращаем анонимный объект
