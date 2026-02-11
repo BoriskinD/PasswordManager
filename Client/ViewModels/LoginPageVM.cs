@@ -14,6 +14,7 @@ namespace Client.ViewModels
         private bool isEntryPassword;
         private bool isShowPassword;
         private HttpWrapper httpWrapper;
+        private CryptoGraphicHelper cryptographicHelper;
         private readonly INavigationService _navigationService;
 
         public RelayCommand LoginCommand { get; }
@@ -55,6 +56,7 @@ namespace Client.ViewModels
 
         public LoginPageVM(INavigationService navigationService)
         {
+            cryptographicHelper = new CryptoGraphicHelper();
             httpWrapper = HttpWrapper.GetInstance();
             LoginCommand = new RelayCommand(LoginUser);
             RegisterCommand = new RelayCommand(RegisterNewUser);
@@ -116,11 +118,10 @@ namespace Client.ViewModels
                 return;
             }
 
-            User newUser = new User()
-            {
-                Login = userLogin,
-                PasswordHash = userPassword,
-            };
+            User newUser = new();
+            newUser.Login = userLogin;
+            newUser.Salt = cryptographicHelper.GenerateSalt();
+            newUser.PasswordHash = cryptographicHelper.HashPassword(userPassword, newUser.Salt);
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {
