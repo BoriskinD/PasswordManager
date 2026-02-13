@@ -91,17 +91,11 @@ namespace Server.Controllers
         {
             if (context.Users.Any(u => u.Login == user.Login))
             {
-                return BadRequest("Пользователь с таким именем уже существует!");
+                return BadRequest("Пользователь с таким логином уже существует!");
             }
 
-            //string hashPassword = PasswordHelper.CreateHash(user.Password);
-            //User registeredUser = new User()
-            //{
-            //    Login = user.Login,
-            //    Password = hashPassword,
-            //};
             context.Users.Add(user);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             return Ok("Регистрация прошла успешно, теперь выполните вход.");
         }
@@ -110,7 +104,7 @@ namespace Server.Controllers
         public async Task<IActionResult> Login([FromBody] User user)
         { 
             User? loginedUser = context.Users.FirstOrDefault(u => u.Login == user.Login);
-            if (loginedUser != null && PasswordHelper.VerifyPassword(user.PasswordHash, loginedUser.PasswordHash))
+            if (string.Equals(user.PasswordHash, loginedUser.PasswordHash))
             {
                 string token = TokenGenerator.GenerateJwtToken(loginedUser);
                 //Возвращаем анонимный объект
@@ -118,6 +112,18 @@ namespace Server.Controllers
             }
 
             return Unauthorized("Авторизация не пройдена!");
+        }
+
+        [HttpPost("GetUserSalt")]
+        public IActionResult GetUserSalt([FromBody] User user)
+        {
+            User? tmp = context.Users.FirstOrDefault(u => u.Login == user.Login);
+            if (tmp != null)
+            {
+                return Ok(new { tmp.Salt });
+            }
+
+            return BadRequest("Пользователя с таким логином не существует!");
         }
     }
 }

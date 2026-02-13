@@ -73,24 +73,37 @@ namespace Client.ViewModels
                 return;
             }
 
+            User user = new User();
+            user.Login = userLogin;
+
+            using HttpResponseMessage getUserSaltResponse = await httpWrapper.GetUserSalt(user);
+            {
+                string content = await getUserSaltResponse.Content.ReadAsStringAsync();
+                if (getUserSaltResponse.IsSuccessStatusCode)
+                {
+                    ServerResponse? serverResponse = JsonConvert.DeserializeObject<ServerResponse>(content);
+                    user.Salt = serverResponse.Salt;
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(new Message<string>($"Ошибка входа. {content}"), (int)MessengerTokens.Tokens.LoginPage);
+                    return;
+                }
+            }
+
             //очистить старый токен
             SecureStorage.Remove("AccsessToken");
 
-            User user = new User()
+            user.PasswordHash = cryptographicHelper.HashPassword(userPassword, user.Salt);
+            using HttpResponseMessage loginUserresponse = await httpWrapper.Login(user);
             {
-                Login = userLogin,
-                PasswordHash = userPassword
-            };
-
-            using HttpResponseMessage response = await httpWrapper.Login(user);
-            {
-                if (response.IsSuccessStatusCode)
+                string content = await loginUserresponse.Content.ReadAsStringAsync();
+                if (loginUserresponse.IsSuccessStatusCode)
                 {
-                    string responseContent = await response.Content.ReadAsStringAsync();
-                    LoginResponse? loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
-                    user.Id = loginResponse.UserId;
+                    ServerResponse? serverResponse = JsonConvert.DeserializeObject<ServerResponse>(content);
+                    user.Id = serverResponse.UserId;
 
-                    await SecureStorage.SetAsync("AccsessToken", loginResponse.Token);
+                    await SecureStorage.SetAsync("AccsessToken", serverResponse.Token);
 
                     _navigationService.OpenWindow<MainPage>(window =>
                     {
@@ -104,8 +117,7 @@ namespace Client.ViewModels
                 }
                 else
                 {
-                    string responseContent = await response.Content.ReadAsStringAsync();
-                    WeakReferenceMessenger.Default.Send(new Message<string>($"Не удалось войти. {responseContent}"), (int)MessengerTokens.Tokens.LoginPage);
+                    WeakReferenceMessenger.Default.Send(new Message<string>($"Ошибка входа. {content}"), (int)MessengerTokens.Tokens.LoginPage);
                 }
             }
         }

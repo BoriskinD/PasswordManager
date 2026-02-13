@@ -83,5 +83,12 @@ namespace Client.Model
             HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}Login", content);
             return response;
         }
+
+        public async Task<HttpResponseMessage> GetUserSalt(User user)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, mediaType);
+            HttpResponseMessage response = await httpClient.PostAsync($"{apiUrl}GetUserSalt", content);
+            return response;
+        }
     }
 }
