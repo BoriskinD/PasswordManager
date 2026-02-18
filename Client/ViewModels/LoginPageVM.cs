@@ -82,7 +82,7 @@ namespace Client.ViewModels
                 if (getUserSaltResponse.IsSuccessStatusCode)
                 {
                     ServerResponse? serverResponse = JsonConvert.DeserializeObject<ServerResponse>(content);
-                    user.Salt = serverResponse.Salt;
+                    user.AuthSalt = serverResponse.AuthSalt;
                 }
                 else
                 {
@@ -94,11 +94,11 @@ namespace Client.ViewModels
             //очистить старый токен
             SecureStorage.Remove("AccsessToken");
 
-            user.PasswordHash = cryptographicHelper.HashPassword(userPassword, user.Salt);
-            using HttpResponseMessage loginUserresponse = await httpWrapper.Login(user);
+            user.PasswordHash = cryptographicHelper.HashPassword(userPassword, user.AuthSalt);
+            using HttpResponseMessage loginUserResponse = await httpWrapper.Login(user);
             {
-                string content = await loginUserresponse.Content.ReadAsStringAsync();
-                if (loginUserresponse.IsSuccessStatusCode)
+                string content = await loginUserResponse.Content.ReadAsStringAsync();
+                if (loginUserResponse.IsSuccessStatusCode)
                 {
                     ServerResponse? serverResponse = JsonConvert.DeserializeObject<ServerResponse>(content);
                     user.Id = serverResponse.UserId;
@@ -132,8 +132,9 @@ namespace Client.ViewModels
 
             User newUser = new();
             newUser.Login = userLogin;
-            newUser.Salt = cryptographicHelper.GenerateSalt();
-            newUser.PasswordHash = cryptographicHelper.HashPassword(userPassword, newUser.Salt);
+            newUser.AuthSalt = cryptographicHelper.GenerateSalt();
+            newUser.EncryptionSalt = cryptographicHelper.GenerateSalt();
+            newUser.PasswordHash = cryptographicHelper.HashPassword(userPassword, newUser.AuthSalt);
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {

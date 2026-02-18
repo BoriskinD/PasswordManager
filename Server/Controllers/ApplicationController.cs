@@ -120,7 +120,7 @@ namespace Server.Controllers
             User? tmp = context.Users.FirstOrDefault(u => u.Login == user.Login);
             if (tmp != null)
             {
-                return Ok(new { tmp.Salt });
+                return Ok(new { tmp.AuthSalt });
             }
 
             return BadRequest("Пользователя с таким логином не существует!");

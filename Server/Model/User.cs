@@ -8,7 +8,9 @@
 
         public string? PasswordHash { get; set; }
 
-        public byte[]? Salt { get; set; }
+        public byte[]? AuthSalt { get; set; }
+
+        public byte[]? EncryptionSalt { get; set; }
 
         public List<Application> Apps { get; set; } = new List<Application>();
     }

@@ -8,6 +8,8 @@
 
         public string? PasswordHash { get; set; }
 
-        public byte[]? Salt { get; set; }
+        public byte[]? AuthSalt { get; set; }
+
+        public byte[]? EncryptionSalt { get; set; }
     }
 }
