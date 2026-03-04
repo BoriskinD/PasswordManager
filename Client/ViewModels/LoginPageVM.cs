@@ -14,7 +14,6 @@ namespace Client.ViewModels
         private bool isEntryPassword;
         private bool isShowPassword;
         private HttpWrapper httpWrapper;
-        private CryptoGraphicHelper cryptographicHelper;
         private readonly INavigationService _navigationService;
 
         public RelayCommand LoginCommand { get; }
@@ -56,7 +55,6 @@ namespace Client.ViewModels
 
         public LoginPageVM(INavigationService navigationService)
         {
-            cryptographicHelper = new CryptoGraphicHelper();
             httpWrapper = HttpWrapper.GetInstance();
             LoginCommand = new RelayCommand(LoginUser);
             RegisterCommand = new RelayCommand(RegisterNewUser);
@@ -94,7 +92,7 @@ namespace Client.ViewModels
             //очистить старый токен
             SecureStorage.Remove("AccsessToken");
 
-            user.PasswordHash = cryptographicHelper.HashPassword(userPassword, user.AuthSalt);
+            user.PasswordHash = CryptoGraphicHelper.HashPassword(userPassword, user.AuthSalt);
             using HttpResponseMessage loginUserResponse = await httpWrapper.Login(user);
             {
                 string content = await loginUserResponse.Content.ReadAsStringAsync();
@@ -102,6 +100,7 @@ namespace Client.ViewModels
                 {
                     ServerResponse? serverResponse = JsonConvert.DeserializeObject<ServerResponse>(content);
                     user.Id = serverResponse.UserId;
+                    user.EncryptionSalt = serverResponse.EncryptionSalt;
 
                     await SecureStorage.SetAsync("AccsessToken", serverResponse.Token);
 
@@ -132,9 +131,9 @@ namespace Client.ViewModels
 
             User newUser = new();
             newUser.Login = userLogin;
-            newUser.AuthSalt = cryptographicHelper.GenerateSalt();
-            newUser.EncryptionSalt = cryptographicHelper.GenerateSalt();
-            newUser.PasswordHash = cryptographicHelper.HashPassword(userPassword, newUser.AuthSalt);
+            newUser.AuthSalt = CryptoGraphicHelper.GenerateSalt();
+            newUser.EncryptionSalt = CryptoGraphicHelper.GenerateSalt();
+            newUser.PasswordHash = CryptoGraphicHelper.HashPassword(userPassword, newUser.AuthSalt);
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {

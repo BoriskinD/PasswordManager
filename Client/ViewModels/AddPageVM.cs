@@ -9,6 +9,7 @@ namespace Client.ViewModels
     public class AddPageVM : INotifyPropertyChanged, IParameterReceiver
     {
         private HttpWrapper httpWrapper;
+        private User user;
         private string? title;
         private string? userLogin;
         private string? userPassword;
@@ -17,8 +18,6 @@ namespace Client.ViewModels
         private string imageFolder;
         private string pathToImage;
         private string selectedImage;
-        private string userName;
-        private int _userId;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -63,14 +62,13 @@ namespace Client.ViewModels
             ImagePath = MainPageVM.defaultImage;
             pathToImage = string.Empty;
             selectedImage = string.Empty;
-            userName = string.Empty;
         }
 
         private async void Save()
         {
             MyApp newApp = new MyApp()
             {
-                UserId = _userId,
+                UserId = user.Id,
                 Title = Title,
                 UserLogin = UserLogin,
                 UserPassword = UserPassword,
@@ -135,11 +133,10 @@ namespace Client.ViewModels
 
         public void SetParameter(object parameter)
         {
-            if (parameter is User user)
+            if (parameter is User loginedUser)
             {
-                _userId = user.Id;
-                userName = user.Login;
-                imageFolder = Path.Combine(baseDirectory, $"Images/{userName}");
+                user = loginedUser;
+                imageFolder = Path.Combine(baseDirectory, $"Images/{user.Login}");
             }
         }
 

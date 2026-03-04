@@ -108,7 +108,8 @@ namespace Server.Controllers
             {
                 string token = TokenGenerator.GenerateJwtToken(loginedUser);
                 //Возвращаем анонимный объект
-                return Ok(new { UserId = loginedUser.Id, Token = token });
+                return Ok(new { UserId = loginedUser.Id, Token = token,
+                                EncryptionSalt = loginedUser.EncryptionSalt });
             }
 
             return Unauthorized("Авторизация не пройдена!");
