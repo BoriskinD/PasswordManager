@@ -66,14 +66,14 @@ namespace Client.ViewModels
 
         private async void Save()
         {
-            MyApp newApp = new MyApp()
-            {
-                UserId = user.Id,
-                Title = Title,
-                UserLogin = UserLogin,
-                UserPassword = UserPassword,
-                ImagePath = string.IsNullOrEmpty(pathToImage) ? ImagePath : pathToImage 
-            };
+            MyApp newApp = new MyApp();
+            newApp.UserId = user.Id;
+            newApp.Title = Title;
+            newApp.UserLogin = UserLogin;
+            newApp.UserPassword = UserPassword;
+            newApp.ImagePath = string.IsNullOrEmpty(pathToImage) ? ImagePath : pathToImage;
+
+
 
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             //Передаем токен в запрос
