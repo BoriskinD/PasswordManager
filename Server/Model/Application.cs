@@ -13,7 +13,7 @@ namespace Server.Model
         public string? UserLogin { get; set; }
 
         [Required]
-        public string? UserPassword { get; set; }
+        public byte[]? UserPassword { get; set; }
 
         [Required]
         public int UserId { get; set; }
