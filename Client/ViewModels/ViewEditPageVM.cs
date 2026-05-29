@@ -140,7 +140,7 @@ namespace Client.ViewModels
                 Id = selectedAppId,
                 Title = Title,
                 UserLogin = UserLogin,
-                UserPassword = UserPassword,
+                //UserPassword = UserPassword,
                 ImagePath = string.IsNullOrEmpty(newImagePath) ? ImagePath : newImagePath
             };
 
@@ -200,14 +200,14 @@ namespace Client.ViewModels
             ImagePath = resizedImage;           
         }
 
-        public void SetParameter(object parameter)
+        public void SetParameter(object parameter1, object parameter2)
         {
-            if (parameter is MyApp myApp)
+            if (parameter1 is MyApp myApp && 
+                (parameter2 is User loginedUser && parameter2 != null))
             { 
                 selectedAppId = myApp.Id;
                 Title = myApp.Title;
                 UserLogin = myApp.UserLogin;
-                UserPassword = myApp.UserPassword;
                 ImagePath = myApp.ImagePath;
                 UserPassword = SecureSession.getInstance().Decrypt(myApp.UserPassword);
             }

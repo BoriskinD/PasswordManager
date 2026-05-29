@@ -65,7 +65,7 @@ namespace Client.ViewModels
             {
                 window.Width = 400;
                 window.Height = 500;
-            }, loginedUser);
+            }, loginedUser, null); //<--- именованый параметр
         }
 
         private void OpenViewEditPage(MyApp selectedApp)
@@ -74,7 +74,7 @@ namespace Client.ViewModels
             {
                 window.Width = 400;
                 window.Height = 560;
-            }, selectedApp);
+            }, selectedApp, loginedUser);
         }
 
         private void BackToLoginPage()
@@ -139,9 +139,9 @@ namespace Client.ViewModels
             }
         }
 
-        public void SetParameter(object parameter)
+        public void SetParameter(object parameter1, object parameter2)
         {
-            if (parameter is User user)
+            if (parameter1 is User user)
             {
                 loginedUser = user;
                 OnPropertyChanged(nameof(UserInfo));
