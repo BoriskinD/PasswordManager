@@ -102,6 +102,9 @@ namespace Client.ViewModels
                     user.Id = serverResponse.UserId;
                     user.EncryptionSalt = serverResponse.EncryptionSalt;
 
+                    //Генерация мастер ключа
+                    SecureSession.getInstance().Initialize(userPassword, user.EncryptionSalt);
+
                     await SecureStorage.SetAsync("AccsessToken", serverResponse.Token);
 
                     _navigationService.OpenWindow<MainPage>(window =>

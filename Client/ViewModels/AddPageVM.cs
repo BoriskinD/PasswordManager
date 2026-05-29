@@ -70,10 +70,8 @@ namespace Client.ViewModels
             newApp.UserId = user.Id;
             newApp.Title = Title;
             newApp.UserLogin = UserLogin;
-            newApp.UserPassword = UserPassword;
             newApp.ImagePath = string.IsNullOrEmpty(pathToImage) ? ImagePath : pathToImage;
-
-
+            newApp.UserPassword = SecureSession.getInstance().Encrypt(UserPassword);
 
             string? token = await SecureStorage.GetAsync($"AccsessToken");
             //Передаем токен в запрос
@@ -131,9 +129,9 @@ namespace Client.ViewModels
             }
         }
 
-        public void SetParameter(object parameter)
+        public void SetParameter(object parameter1, object parameter2)
         {
-            if (parameter is User loginedUser)
+            if (parameter1 is User loginedUser)
             {
                 user = loginedUser;
                 imageFolder = Path.Combine(baseDirectory, $"Images/{user.Login}");

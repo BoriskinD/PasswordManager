@@ -86,7 +86,9 @@ namespace Client.ViewModels
                 window.Width = 450;
             });
 
-            //Close all child window
+            SecureSession.getInstance().Clear();
+
+            //Закрыть все дочерние окна
             WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.MainPage);
             WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.ViewEditPage);
             WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.AddPage);

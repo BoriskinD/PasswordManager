@@ -209,6 +209,7 @@ namespace Client.ViewModels
                 UserLogin = myApp.UserLogin;
                 UserPassword = myApp.UserPassword;
                 ImagePath = myApp.ImagePath;
+                UserPassword = SecureSession.getInstance().Decrypt(myApp.UserPassword);
             }
         }
 
