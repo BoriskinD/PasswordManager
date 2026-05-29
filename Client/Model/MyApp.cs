@@ -13,7 +13,7 @@ namespace Client.Model
 
         public string? UserLogin { get; set; }
 
-        public string? UserPassword { get; set; }
+        public byte[]? UserPassword { get; set; }
 
         public string? ImagePath { get; set; }
 

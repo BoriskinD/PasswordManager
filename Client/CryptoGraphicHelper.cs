@@ -21,7 +21,7 @@ namespace Client
             return passwordHash;
         }
 
-        public static byte[] CreateEncryptionKey(string masterPassword, byte[] encryptionSalt) 
+        public static byte[] CreateKey(string masterPassword, byte[] encryptionSalt) 
         {
             return Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(masterPassword), encryptionSalt,
                                              600_000, HashAlgorithmName.SHA256, 32);

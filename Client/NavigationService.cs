@@ -10,14 +10,15 @@
             _serviceProvider = serviceProvider;
         }
 
-        public void OpenWindow<TPage>(Action<Window> configureWindow, object? parameter = null) where TPage : Page
+        public void OpenWindow<TPage>(Action<Window> configureWindow, object? parameter = null,
+                                      object? user = null) where TPage : Page
         {
             //Получить страницу из контейнера
             TPage page = _serviceProvider.GetRequiredService<TPage>();
 
-            if (page.BindingContext is IParameterReceiver receiver && parameter != null)
+            if (page.BindingContext is IParameterReceiver receiver)
             { 
-                receiver.SetParameter(parameter);
+                receiver.SetParameter(parameter, user);
             }
 
             Window window = new Window(page);

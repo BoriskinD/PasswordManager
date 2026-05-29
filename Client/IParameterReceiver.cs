@@ -3,6 +3,6 @@
     //Интерфейс для передачи параметров между окнами
     interface IParameterReceiver
     {
-        void SetParameter(object parameter);
+        void SetParameter(object parameter1, object parameter2);
     }
 }
