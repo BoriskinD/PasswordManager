@@ -1,48 +1,28 @@
 ﻿using Client.Model;
 using Client.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace Client.ViewModels
 {
-    public class MainPageVM : INotifyPropertyChanged, IParameterReceiver
+    public partial class MainPageVM : ObservableObject, IParameterReceiver
     {
-        public MyApp SelectedApp { get; set; }
+        [ObservableProperty]
+        private string? _userInfo;
+
+        public MyApp? SelectedApp { get; set; }
         public ObservableCollection<MyApp> Apps { get; }
-        public ICommand SetSelectedItemCommand { get; }
-        public ICommand OpenAddPageCommand { get; }
-        public ICommand DeleteItemCommand { get; }
-        public ICommand OpenViewEditPageCommand { get; }
-        public ICommand DownloadDataFromDBCommand { get; }
-        public ICommand BackToLoginPageCommand { get; }
-
-        public static string defaultImage = "no_image_available.jpg";
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private HttpWrapper httpWrapper;
-        private readonly INavigationService _navigationService;
-
         private User? loginedUser;
-        public string UserInfo
-        {
-            get => loginedUser?.Login;
-        }
+        private readonly INavigationService _navigationService;
+        public static string defaultImage = "no_image_available.jpg";
 
         public MainPageVM(INavigationService navigationService)
         {
             httpWrapper = HttpWrapper.GetInstance();
             Apps = new ObservableCollection<MyApp>();
-            OpenAddPageCommand = new RelayCommand(OpenAddPage);
-            DeleteItemCommand = new RelayCommand(DeleteSelectedItem);
-            SetSelectedItemCommand = new RelayCommand<MyApp>(SetSelectedItem);
-            OpenViewEditPageCommand = new RelayCommand<MyApp>(OpenViewEditPage);
-            DownloadDataFromDBCommand = new RelayCommand(DownloadItemsFromDB);
-            BackToLoginPageCommand = new RelayCommand(BackToLoginPage);
             _navigationService = navigationService;
 
             WeakReferenceMessenger.Default.Register<Message<MyApp>, int>(this, (int)MessengerTokens.Tokens.MainPageVM, (recipient, message) =>
@@ -59,6 +39,7 @@ namespace Client.ViewModels
             });
         }
 
+        [RelayCommand]
         private void OpenAddPage()
         {
             _navigationService.OpenWindow<AddPage>(window =>
@@ -68,6 +49,7 @@ namespace Client.ViewModels
             }, loginedUser, null); //<--- именованый параметр
         }
 
+        [RelayCommand]
         private void OpenViewEditPage(MyApp selectedApp)
         {
             _navigationService.OpenWindow<ViewEditPage>(window =>
@@ -77,6 +59,7 @@ namespace Client.ViewModels
             }, selectedApp, loginedUser);
         }
 
+        [RelayCommand]
         private void BackToLoginPage()
         {
             _navigationService.OpenWindow<LoginPage>(window =>
@@ -94,12 +77,8 @@ namespace Client.ViewModels
             WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.AddPage);
         }
 
-        private void SetSelectedItem(MyApp selectedApp)
-        {
-            SelectedApp = selectedApp;
-        }
-
-        private async void DeleteSelectedItem()
+        [RelayCommand]
+        private async Task DeleteSelectedItem()
         {
             if (SelectedApp == null)
             {
@@ -118,7 +97,8 @@ namespace Client.ViewModels
             Apps.Remove(SelectedApp);
         }
 
-        private async void DownloadItemsFromDB()
+        [RelayCommand]
+        private async Task DownloadItemsFromDB()
         {
             Apps.Clear();
 
@@ -139,12 +119,18 @@ namespace Client.ViewModels
             }
         }
 
+        [RelayCommand]
+        private void SetSelectedItem(MyApp selectedApp)
+        {
+            SelectedApp = selectedApp;
+        }
+
         public void SetParameter(object parameter1, object parameter2)
         {
             if (parameter1 is User user)
             {
                 loginedUser = user;
-                OnPropertyChanged(nameof(UserInfo));
+                UserInfo = loginedUser.Login;
             }
         }
 
@@ -157,8 +143,5 @@ namespace Client.ViewModels
                 Apps.Add(changedApp);
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
-                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

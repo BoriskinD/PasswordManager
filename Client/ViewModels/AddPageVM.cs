@@ -1,62 +1,36 @@
 ﻿using Client.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+
 
 namespace Client.ViewModels
 {
-    public class AddPageVM : INotifyPropertyChanged, IParameterReceiver
+    public partial class AddPageVM : ObservableObject, IParameterReceiver 
     {
+        [ObservableProperty]
+        private string? _title;
+
+        [ObservableProperty]
+        private string? _userLogin;
+
+        [ObservableProperty]
+        private string? _userPassword;
+
+        [ObservableProperty]
+        private string? _imagePath;
+
         private HttpWrapper httpWrapper;
-        private User user;
-        private string? title;
-        private string? userLogin;
-        private string? userPassword;
-        private string? imagePath;
+        private User? user;
+
         private string baseDirectory;
-        private string imageFolder;
+        private string? imageFolder;
         private string pathToImage;
         private string selectedImage;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public RelayCommand SaveCommand { get; }
-        public RelayCommand SelectImageCommand { get; }
-
-        public string Title 
-        {
-            get => title;
-            set => title = value;
-        }
-
-        public string UserLogin
-        {
-            get => userLogin;
-            set => userLogin = value;
-        }
-
-        public string UserPassword
-        {
-            get => userPassword;
-            set => userPassword = value;
-        }
-
-        public string ImagePath
-        {
-            get => imagePath;
-            set
-            {
-                imagePath = value;
-                OnPropertyChanged();
-            }
-        }
 
         public AddPageVM()
         {
             httpWrapper = HttpWrapper.GetInstance();
-            SaveCommand = new RelayCommand(Save);
-            SelectImageCommand = new RelayCommand(SelectImage);
 
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             ImagePath = MainPageVM.defaultImage;
@@ -64,7 +38,8 @@ namespace Client.ViewModels
             selectedImage = string.Empty;
         }
 
-        private async void Save()
+        [RelayCommand]
+        private async Task Save()
         {
             MyApp newApp = new MyApp();
             newApp.UserId = user.Id;
@@ -99,7 +74,8 @@ namespace Client.ViewModels
             } 
         }
 
-        private async void SelectImage() 
+        [RelayCommand]
+        private async Task SelectImage() 
         {
             if (!Directory.Exists(imageFolder))
             {
@@ -137,8 +113,5 @@ namespace Client.ViewModels
                 imageFolder = Path.Combine(baseDirectory, $"Images/{user.Login}");
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
-                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
