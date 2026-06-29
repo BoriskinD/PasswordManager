@@ -1,69 +1,88 @@
 ﻿using Client.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Client.ViewModels
 {
-    public class LoginPageVM : INotifyPropertyChanged
+    public partial class LoginPageVM : ObservableObject, INotifyPropertyChanged
     {
-        private string? userLogin;
-        private string? userPassword;
-        private bool isEntryPassword;
-        private bool isShowPassword;
+        //private string? userLogin;
+        //private string? userPassword;
+        //private bool isEntryPassword;
+        //private bool isShowPassword;
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        public RelayCommand LoginCommand { get; }
-        public RelayCommand RegisterCommand { get; }
+        //public RelayCommand LoginCommand { get; }
+        //public RelayCommand RegisterCommand { get; }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        //public event PropertyChangedEventHandler? PropertyChanged;
 
-        public bool IsEntryPassword
-        {
-            get => isEntryPassword;
-            set 
-            {
-                isEntryPassword = value;
-                OnPropertyChanged();
-            }
-        }
+        [ObservableProperty]
+        public bool _isEntryPassword;
 
-        public bool IsShowPassword
-        {
-            get => isShowPassword;
-            set 
-            {
-                isShowPassword = value;
-                IsEntryPassword = !isShowPassword;
-            }
-        }
+        [ObservableProperty]
+        public bool _isShowPassword;
 
-        public string UserLogin
-        {
-            get => userLogin;
-            set => userLogin = value;
-        }
+        [ObservableProperty]
+        public string _userLogin;
 
-        public string UserPassword
-        {
-            get => userPassword;
-            set => userPassword = value;
-        }
+        [ObservableProperty]
+        public string _userPassword;
+
+        //public bool IsEntryPassword
+        //{
+        //    get => isEntryPassword;
+        //    set 
+        //    {
+        //        isEntryPassword = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //public bool IsShowPassword
+        //{
+        //    get => isShowPassword;
+        //    set 
+        //    {
+        //        isShowPassword = value;
+        //        IsEntryPassword = !isShowPassword;
+        //    }
+        //}
+
+        //public string UserLogin
+        //{
+        //    get => userLogin;
+        //    set => userLogin = value;
+        //}
+
+        //public string UserPassword
+        //{
+        //    get => userPassword;
+        //    set => userPassword = value;
+        //}
 
         public LoginPageVM(INavigationService navigationService)
         {
             httpWrapper = HttpWrapper.GetInstance();
-            LoginCommand = new RelayCommand(LoginUser);
-            RegisterCommand = new RelayCommand(RegisterNewUser);
+            //LoginCommand = new RelayCommand(LoginUser);
+            //RegisterCommand = new RelayCommand(RegisterNewUser);
             _navigationService = navigationService;
 
             IsEntryPassword = true;
         }
 
-        private async void LoginUser()
+        //хук метод свойства IsShowPassword
+        partial void OnIsShowPasswordChanged(bool value)
+        {
+            IsEntryPassword = !value;
+        }
+
+        [RelayCommand]
+        private async Task LoginUser()
         {
             if (string.IsNullOrEmpty(UserLogin) || string.IsNullOrEmpty(UserPassword))
             {
@@ -72,7 +91,7 @@ namespace Client.ViewModels
             }
 
             User user = new User();
-            user.Login = userLogin;
+            user.Login = UserLogin;
 
             using HttpResponseMessage getUserSaltResponse = await httpWrapper.GetUserSalt(user);
             {
@@ -92,7 +111,7 @@ namespace Client.ViewModels
             //очистить старый токен
             SecureStorage.Remove("AccsessToken");
 
-            user.PasswordHash = CryptoGraphicHelper.HashPassword(userPassword, user.AuthSalt);
+            user.PasswordHash = CryptoGraphicHelper.HashPassword(UserPassword, user.AuthSalt);
             using HttpResponseMessage loginUserResponse = await httpWrapper.Login(user);
             {
                 string content = await loginUserResponse.Content.ReadAsStringAsync();
@@ -103,7 +122,7 @@ namespace Client.ViewModels
                     user.EncryptionSalt = serverResponse.EncryptionSalt;
 
                     //Генерация мастер ключа
-                    SecureSession.getInstance().Initialize(userPassword, user.EncryptionSalt);
+                    SecureSession.getInstance().Initialize(UserPassword, user.EncryptionSalt);
 
                     await SecureStorage.SetAsync("AccsessToken", serverResponse.Token);
 
@@ -124,19 +143,20 @@ namespace Client.ViewModels
             }
         }
 
-        private async void RegisterNewUser() 
+        [RelayCommand]
+        private async Task RegisterNewUser() 
         {
-            if (string.IsNullOrEmpty(userLogin) || string.IsNullOrEmpty(userPassword))
+            if (string.IsNullOrEmpty(UserLogin) || string.IsNullOrEmpty(UserPassword))
             {
                 WeakReferenceMessenger.Default.Send(new Message<string>("Не все поля заполнены!"), (int)MessengerTokens.Tokens.LoginPage);
                 return;
             }
 
             User newUser = new();
-            newUser.Login = userLogin;
+            newUser.Login = UserLogin;
             newUser.AuthSalt = CryptoGraphicHelper.GenerateSalt();
             newUser.EncryptionSalt = CryptoGraphicHelper.GenerateSalt();
-            newUser.PasswordHash = CryptoGraphicHelper.HashPassword(userPassword, newUser.AuthSalt);
+            newUser.PasswordHash = CryptoGraphicHelper.HashPassword(UserPassword, newUser.AuthSalt);
 
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {
@@ -152,7 +172,7 @@ namespace Client.ViewModels
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
-                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
+        //                              PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

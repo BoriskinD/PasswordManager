@@ -46,7 +46,7 @@ namespace Client.ViewModels
             {
                 window.Width = 400;
                 window.Height = 500;
-            }, loginedUser, null); //<--- именованый параметр
+            }, loginedUser, null); 
         }
 
         [RelayCommand]
