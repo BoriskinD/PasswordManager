@@ -9,67 +9,24 @@ namespace Client.ViewModels
 {
     public partial class LoginPageVM : ObservableObject, INotifyPropertyChanged
     {
-        //private string? userLogin;
-        //private string? userPassword;
-        //private bool isEntryPassword;
-        //private bool isShowPassword;
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
 
-        //public RelayCommand LoginCommand { get; }
-        //public RelayCommand RegisterCommand { get; }
-
-        //public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private bool _isEntryPassword;
 
         [ObservableProperty]
-        public bool _isEntryPassword;
+        private bool _isShowPassword;
 
         [ObservableProperty]
-        public bool _isShowPassword;
+        private string _userLogin;
 
         [ObservableProperty]
-        public string _userLogin;
-
-        [ObservableProperty]
-        public string _userPassword;
-
-        //public bool IsEntryPassword
-        //{
-        //    get => isEntryPassword;
-        //    set 
-        //    {
-        //        isEntryPassword = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //public bool IsShowPassword
-        //{
-        //    get => isShowPassword;
-        //    set 
-        //    {
-        //        isShowPassword = value;
-        //        IsEntryPassword = !isShowPassword;
-        //    }
-        //}
-
-        //public string UserLogin
-        //{
-        //    get => userLogin;
-        //    set => userLogin = value;
-        //}
-
-        //public string UserPassword
-        //{
-        //    get => userPassword;
-        //    set => userPassword = value;
-        //}
+        private string _userPassword;
 
         public LoginPageVM(INavigationService navigationService)
         {
             httpWrapper = HttpWrapper.GetInstance();
-            //LoginCommand = new RelayCommand(LoginUser);
-            //RegisterCommand = new RelayCommand(RegisterNewUser);
             _navigationService = navigationService;
 
             IsEntryPassword = true;
@@ -171,8 +128,5 @@ namespace Client.ViewModels
                 }
             }
         }
-
-        //private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
-        //                              PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

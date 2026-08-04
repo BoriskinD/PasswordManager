@@ -14,10 +14,11 @@ namespace Client.ViewModels
 
         public MyApp? SelectedApp { get; set; }
         public ObservableCollection<MyApp> Apps { get; }
+        public static string defaultImage = "no_image_available.jpg";
+
         private HttpWrapper httpWrapper;
         private User? loginedUser;
         private readonly INavigationService _navigationService;
-        public static string defaultImage = "no_image_available.jpg";
 
         public MainPageVM(INavigationService navigationService)
         {
