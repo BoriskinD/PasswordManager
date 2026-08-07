@@ -3,26 +3,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
-
 namespace Client.ViewModels
 {
     public partial class AddPageVM : ObservableObject, IParameterReceiver 
     {
-        [ObservableProperty]
-        private string? _title;
-
-        [ObservableProperty]
-        private string? _userLogin;
-
-        [ObservableProperty]
-        private string? _userPassword;
-
-        [ObservableProperty]
-        private string? _imagePath;
+        [ObservableProperty] private string _title;
+        [ObservableProperty] private string _userLogin;
+        [ObservableProperty] private string _userPassword;
+        [ObservableProperty] private string _imagePath;
 
         private HttpWrapper httpWrapper;
         private User? user;
-
         private string baseDirectory;
         private string? imageFolder;
         private string pathToImage;
@@ -60,17 +51,14 @@ namespace Client.ViewModels
                     newApp.Id = int.Parse(responseContent);
 
                     if (!string.IsNullOrEmpty(selectedImage))
-                    {
                         File.Copy(selectedImage, pathToImage);
-                    }
 
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(newApp), (int)MessengerTokens.Tokens.MainPageVM);
-                    WeakReferenceMessenger.Default.Send(new Message<string>("Данные были успешно добавлены."), (int)MessengerTokens.Tokens.AddPage);
+                    WeakReferenceMessenger.Default.Send(new Message<string>("Данные были успешно добавлены."),
+                                                        (int)MessengerTokens.Tokens.AddPage);
                 }
-                else
-                {
-                    WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось добавить данные."), (int)MessengerTokens.Tokens.AddPage);
-                }
+                else WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось добавить данные."),
+                                                        (int)MessengerTokens.Tokens.AddPage);
             } 
         }
 
@@ -78,9 +66,7 @@ namespace Client.ViewModels
         private async Task SelectImage() 
         {
             if (!Directory.Exists(imageFolder))
-            {
                 Directory.CreateDirectory(imageFolder);
-            }
                 
             try
             {
@@ -99,10 +85,8 @@ namespace Client.ViewModels
                     pathToImage = Path.Combine(imageFolder, $"{fileName}_{formattedDateTime}{extension}");
                 }
             }
-            catch (Exception)
-            {
-                WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."), (int)MessengerTokens.Tokens.AddPage);
-            }
+            catch (Exception) { WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."),
+                                                                    (int)MessengerTokens.Tokens.AddPage); }
         }
 
         public void SetParameter(object parameter1, object parameter2)

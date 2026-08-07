@@ -9,20 +9,13 @@ namespace Client.ViewModels
 {
     public partial class LoginPageVM : ObservableObject, INotifyPropertyChanged
     {
+        [ObservableProperty] private bool _isEntryPassword;
+        [ObservableProperty] private bool _isShowPassword;
+        [ObservableProperty] private string _userLogin;
+        [ObservableProperty] private string _userPassword;
+
         private HttpWrapper httpWrapper;
         private readonly INavigationService _navigationService;
-
-        [ObservableProperty]
-        private bool _isEntryPassword;
-
-        [ObservableProperty]
-        private bool _isShowPassword;
-
-        [ObservableProperty]
-        private string _userLogin;
-
-        [ObservableProperty]
-        private string _userPassword;
 
         public LoginPageVM(INavigationService navigationService)
         {
@@ -93,10 +86,8 @@ namespace Client.ViewModels
                     //Закрыть окно авторизации
                     WeakReferenceMessenger.Default.Send(new Message<string>(string.Empty, true), (int)MessengerTokens.Tokens.LoginPage);
                 }
-                else
-                {
-                    WeakReferenceMessenger.Default.Send(new Message<string>($"Ошибка входа. {content}"), (int)MessengerTokens.Tokens.LoginPage);
-                }
+                else { WeakReferenceMessenger.Default.Send(new Message<string>($"Ошибка входа. {content}"),
+                                                           (int)MessengerTokens.Tokens.LoginPage);}
             }
         }
 
@@ -118,14 +109,12 @@ namespace Client.ViewModels
             using HttpResponseMessage response = await httpWrapper.RegisterUser(newUser);
             {
                 string responseContent = await response.Content.ReadAsStringAsync();
+
                 if (response.IsSuccessStatusCode)
-                {
                     WeakReferenceMessenger.Default.Send(new Message<string>(responseContent), (int)MessengerTokens.Tokens.LoginPage);
-                }
                 else
-                {
-                    WeakReferenceMessenger.Default.Send(new Message<string>($"Не далось зарегистрироваться. {responseContent}"), (int)MessengerTokens.Tokens.LoginPage);
-                }
+                    WeakReferenceMessenger.Default.Send(new Message<string>($"Не далось зарегистрироваться. {responseContent}"),
+                                                        (int)MessengerTokens.Tokens.LoginPage);
             }
         }
     }

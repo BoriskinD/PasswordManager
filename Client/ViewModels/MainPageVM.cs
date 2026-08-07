@@ -9,13 +9,11 @@ namespace Client.ViewModels
 {
     public partial class MainPageVM : ObservableObject, IParameterReceiver
     {
-        [ObservableProperty]
-        private string? _userInfo;
+        [ObservableProperty] private string _userInfo;
 
         public MyApp? SelectedApp { get; set; }
         public ObservableCollection<MyApp> Apps { get; }
         public static string defaultImage = "no_image_available.jpg";
-
         private HttpWrapper httpWrapper;
         private User? loginedUser;
         private readonly INavigationService _navigationService;
@@ -90,9 +88,7 @@ namespace Client.ViewModels
             httpWrapper.httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             if (File.Exists(SelectedApp.ImagePath))
-            {
                 File.Delete(SelectedApp.ImagePath);
-            }
             
             await httpWrapper.Delete(SelectedApp.Id);
             Apps.Remove(SelectedApp);
@@ -110,14 +106,10 @@ namespace Client.ViewModels
             if (listOfApps != null)
             {
                 foreach (MyApp item in listOfApps)
-                {
                     Apps.Add(item);
-                }
             }
-            else
-            {
-                WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"), (int)MessengerTokens.Tokens.MainPage);
-            }
+            else WeakReferenceMessenger.Default.Send(new Message<string>("В базе данных нет записей"),
+                                                    (int)MessengerTokens.Tokens.MainPage);
         }
 
         [RelayCommand]

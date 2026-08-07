@@ -1,146 +1,62 @@
 ﻿using Client.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace Client.ViewModels
 {
-    public class ViewEditPageVM : INotifyPropertyChanged, IParameterReceiver
+    public partial class ViewEditPageVM : ObservableObject, IParameterReceiver
     {
+        [ObservableProperty] private bool _isTitleEnabled;
+        [ObservableProperty] private bool _isUserLoginEnabled;
+        [ObservableProperty] private bool _isUserPasswordEnabled;
+        [ObservableProperty] private bool _isEditAllowed;
+        [ObservableProperty] private string _title;
+        [ObservableProperty] private string _userLogin;
+        [ObservableProperty] private string _userPassword;
+        [ObservableProperty] private string _imagePath;
+
         private HttpWrapper httpWrapper;
         private int selectedAppId;
-        string resizedImage;
-        string newImagePath;
-        string oldImage;
-        private string? title;
-        private string? userLogin;
-        private string? userPassword;
-        private string? imagePath;
-        private bool isEditAllowed;
-        private bool isTitleEnabled;
-        private bool isUserLoginEnabled;
-        private bool isUserPasswordEnabled;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public ICommand SaveChangesCommand { get; }
-        public ICommand SelectImageCommand { get; }
-
-        public bool IsTitleEnabled
-        { 
-            get => isTitleEnabled;
-            set 
-            {
-                isTitleEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsUserLoginEnabled
-        {
-            get => isUserLoginEnabled;
-            set
-            {
-                isUserLoginEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsUserPasswordEnabled
-        {
-            get => isUserPasswordEnabled;
-            set
-            {
-                isUserPasswordEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Title
-        {
-            get => title;
-            set 
-            {
-                title = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string UserLogin
-        {
-            get => userLogin;
-            set 
-            {
-                userLogin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string UserPassword
-        {
-            get => userPassword;
-            set
-            {
-                userPassword = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ImagePath
-        {
-            get => imagePath;
-            set
-            {
-                imagePath = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsEditAllowed
-        {
-            get => isEditAllowed;
-            set
-            {
-                isEditAllowed = value;
-                OnPropertyChanged();
-
-                if (isEditAllowed)
-                {
-                    IsTitleEnabled = true;
-                    IsUserLoginEnabled = true;
-                    IsUserPasswordEnabled = true;
-                }
-                else
-                {
-                    IsTitleEnabled = false;
-                    IsUserLoginEnabled = false;
-                    IsUserPasswordEnabled = false;
-
-                }
-            }
-        }
+        private string resizedImage;
+        private string newImagePath;
+        private string oldImage;
 
         public ViewEditPageVM()
         {
             httpWrapper = HttpWrapper.GetInstance();
-            SaveChangesCommand = new RelayCommand(SaveChanges);
-            SelectImageCommand = new RelayCommand(SelectImage);
 
-            IsTitleEnabled = false;
-            IsUserLoginEnabled = false;
-            IsUserPasswordEnabled = false;
-            IsEditAllowed = false;
+            resizedImage = string.Empty;
+            newImagePath = string.Empty;
+            oldImage = string.Empty;    
         }
 
-        private async void SaveChanges()
+        //хук-метод
+        partial void OnIsEditAllowedChanged(bool value)
+        {
+            if (IsEditAllowed)
+            {
+                IsTitleEnabled = true;
+                IsUserLoginEnabled = true;
+                IsUserPasswordEnabled = true;
+            }
+            else
+            {
+                IsTitleEnabled = false;
+                IsUserLoginEnabled = false;
+                IsUserPasswordEnabled = false;
+            }
+        }
+
+        [RelayCommand]
+        private async Task SaveChanges()
         {
             MyApp changedApp = new MyApp()
             {
                 Id = selectedAppId,
                 Title = Title,
                 UserLogin = UserLogin,
-                //UserPassword = UserPassword,
+                UserPassword = SecureSession.getInstance().Encrypt(UserPassword),
                 ImagePath = string.IsNullOrEmpty(newImagePath) ? ImagePath : newImagePath
             };
 
@@ -148,27 +64,21 @@ namespace Client.ViewModels
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    if (File.Exists(oldImage))
-                    {
+                    if (File.Exists(oldImage)) 
                         File.Delete(oldImage);
-                    }
 
                     if (!string.IsNullOrEmpty(resizedImage) && !string.IsNullOrEmpty(newImagePath))
-                    {
                         File.Copy(resizedImage, newImagePath);
-                    }
 
                     WeakReferenceMessenger.Default.Send(new Message<MyApp>(changedApp, false, this), (int)MessengerTokens.Tokens.MainPageVM);
                     WeakReferenceMessenger.Default.Send(new Message<string>("Данные изменены"), (int)MessengerTokens.Tokens.ViewEditPage);
                 }
-                else
-                {
-                    WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось изменить данные"), (int)MessengerTokens.Tokens.ViewEditPage);
-                }
+                else WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось изменить данные"), (int)MessengerTokens.Tokens.ViewEditPage);
             }  
         }
 
-        private async void SelectImage()
+        [RelayCommand]
+        private async Task SelectImage()
         {
             try
             {
@@ -176,14 +86,10 @@ namespace Client.ViewModels
 
                 FileResult? result = await FilePicker.Default.PickAsync(pickOptions);
                 if (result != null)
-                {
                     TransformFile(result.FullPath);
-                }
             }
-            catch (Exception)
-            {
-                WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."), (int)MessengerTokens.Tokens.AddPage);
-            }
+            catch (Exception) { WeakReferenceMessenger.Default.Send(new Message<string>("Не удалось выбрать указанный файл."),
+                                (int)MessengerTokens.Tokens.AddPage); }
         }
 
         private void TransformFile(string selectedImagePath)
@@ -212,8 +118,5 @@ namespace Client.ViewModels
                 UserPassword = SecureSession.getInstance().Decrypt(myApp.UserPassword);
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
-                                      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
